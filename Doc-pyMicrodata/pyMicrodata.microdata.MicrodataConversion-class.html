@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pyMicrodata.microdata.MicrodataConversion</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyMicrodata-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pyMicrodata-module.html">Package&nbsp;pyMicrodata</a> ::
+        <a href="pyMicrodata.microdata-module.html">Module&nbsp;microdata</a> ::
+        Class&nbsp;MicrodataConversion
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="pyMicrodata.microdata.MicrodataConversion-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class MicrodataConversion</h1><p class="nomargin-top"><span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+<a href="pyMicrodata.microdata.Microdata-class.html">Microdata</a> --+
+            |
+           <strong class="uidshort">MicrodataConversion</strong>
+</pre>
+
+<hr />
+<p>Top level class encapsulating the conversion algorithms as described 
+  in the W3C note.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyMicrodata.microdata.MicrodataConversion-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">document</span>,
+        <span class="summary-sig-arg">graph</span>,
+        <span class="summary-sig-arg">base</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyMicrodata.microdata.MicrodataConversion-class.html#convert" class="summary-sig-name">convert</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Top level entry to convert and generate all the triples.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.convert">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyMicrodata.microdata.MicrodataConversion-class.html#generate_triples" class="summary-sig-name">generate_triples</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">item</span>,
+        <span class="summary-sig-arg">context</span>)</span><br />
+      Generate the triples for a specific item.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.generate_triples">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyMicrodata.microdata.MicrodataConversion-class.html#generate_predicate_URI" class="summary-sig-name">generate_predicate_URI</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">context</span>)</span><br />
+      Generate a full URI for a predicate, using the type, the vocabulary, 
+      etc.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.generate_predicate_URI">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyMicrodata.microdata.MicrodataConversion-class.html#get_property_value" class="summary-sig-name">get_property_value</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">node</span>,
+        <span class="summary-sig-arg">context</span>)</span><br />
+      Generate an RDF object, ie, the value of a property.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.get_property_value">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pyMicrodata.microdata.MicrodataConversion-class.html#generate_property_values" class="summary-sig-name">generate_property_values</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">subject</span>,
+        <span class="summary-sig-arg">predicate</span>,
+        <span class="summary-sig-arg">objects</span>,
+        <span class="summary-sig-arg">context</span>)</span><br />
+      Generate the property values for for a specific subject and 
+      predicate.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.generate_property_values">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="pyMicrodata.microdata.Microdata-class.html">Microdata</a></code></b>:
+      <code><a href="pyMicrodata.microdata.Microdata-class.html#getElementById">getElementById</a></code>,
+      <code><a href="pyMicrodata.microdata.Microdata-class.html#get_item_properties">get_item_properties</a></code>,
+      <code><a href="pyMicrodata.microdata.Microdata-class.html#get_top_level_items">get_top_level_items</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="base"></a><span class="summary-name">base</span><br />
+      the base URI of the Dom tree, either set from the outside or via a 
+      @base element
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="document"></a><span class="summary-name">document</span><br />
+      top of the DOM tree, as returned by the HTML5 parser
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">RDFLib Graph</span>
+    </td><td class="summary">
+        <a name="graph"></a><span class="summary-name">graph</span><br />
+      an RDF graph; an RDFLib Graph
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="ns_md"></a><span class="summary-name">ns_md</span><br />
+      the Namespace for the microdata vocabulary
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">document</span>,
+        <span class="sig-arg">graph</span>,
+        <span class="sig-arg">base</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>graph</code></strong> (RDFLib Graph) - an RDF graph; an RDFLib Graph</li>
+        <li><strong class="pname"><code>document</code></strong> - top of the DOM tree, as returned by the HTML5 parser</li>
+        <li><strong class="pname"><code>base</code></strong> - the base of the Dom tree, either set from the outside or via a 
+          @base element</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="pyMicrodata.microdata.Microdata-class.html#__init__">Microdata.__init__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="convert"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">convert</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.convert">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Top level entry to convert and generate all the triples. It finds the 
+  top level items, and generates triples for each of them; additionally, it
+  generates a top level entry point to the items from base in the form of 
+  an RDF list.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="generate_triples"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">generate_triples</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">item</span>,
+        <span class="sig-arg">context</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.generate_triples">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate the triples for a specific item. See the W3C Note for the 
+  details.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>item</code></strong> (DOM Node) - the DOM Node for the specific item</li>
+        <li><strong class="pname"><code>context</code></strong> (<a href="pyMicrodata.microdata.Evaluation_Context-class.html" 
+          class="link">Evaluation_Context</a>) - an instance of an evaluation context</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>a URIRef or a BNode for the (RDF) subject</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="generate_predicate_URI"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">generate_predicate_URI</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">context</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.generate_predicate_URI">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate a full URI for a predicate, using the type, the vocabulary, 
+  etc.</p>
+  <p>For details of this entry, see Section 4.4</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> - name of the property, ie, what appears in @itemprop</li>
+        <li><strong class="pname"><code>context</code></strong> (<a href="pyMicrodata.microdata.Evaluation_Context-class.html" 
+          class="link">Evaluation_Context</a>) - an instance of an evaluation context</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_property_value"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_property_value</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">node</span>,
+        <span class="sig-arg">context</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.get_property_value">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate an RDF object, ie, the value of a property. Note that if this
+  element contains an @itemscope, then a recursive call to <a 
+  href="pyMicrodata.microdata.MicrodataConversion-class.html#generate_triples"
+  class="link">MicrodataConversion.generate_triples</a> is done and the 
+  return value of that method (ie, the subject for the corresponding item) 
+  is return as an object.</p>
+  <p>Otherwise, either URIRefs are created for &lt;a&gt;, &lt;img&gt;, etc,
+  elements, or a Literal; the latter gets a time-related type for the 
+  &lt;time&gt; element.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>node</code></strong> (DOM Node) - the DOM Node for which the property values should be generated</li>
+        <li><strong class="pname"><code>context</code></strong> (<a href="pyMicrodata.microdata.Evaluation_Context-class.html" 
+          class="link">Evaluation_Context</a>) - an instance of an evaluation context</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>an RDF resource (URIRef, BNode, or Literal)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="generate_property_values"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">generate_property_values</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">subject</span>,
+        <span class="sig-arg">predicate</span>,
+        <span class="sig-arg">objects</span>,
+        <span class="sig-arg">context</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pyMicrodata.microdata-pysrc.html#MicrodataConversion.generate_property_values">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate the property values for for a specific subject and predicate.
+  The context should specify whether the objects should be added in an RDF 
+  list or each triples individually.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>subject</code></strong> (RDFLib Node (URIRef or blank node)) - RDF subject</li>
+        <li><strong class="pname"><code>predicate</code></strong> (RDFLib URIRef) - RDF predicate</li>
+        <li><strong class="pname"><code>objects</code></strong> (list of RDFLib nodes (URIRefs, Blank Nodes, or literals)) - RDF objects</li>
+        <li><strong class="pname"><code>context</code></strong> (<a href="pyMicrodata.microdata.Evaluation_Context-class.html" 
+          class="link">Evaluation_Context</a>) - evaluation context</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="pyMicrodata-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Apr  2 18:24:44 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
