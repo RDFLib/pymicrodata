@@ -53,7 +53,7 @@ __author__  = 'Ivan Herman'
 __contact__ = 'Ivan Herman, ivan@w3.org'
 __license__ = u'W3C® SOFTWARE NOTICE AND LICENSE, http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231'
 
-import sys, StringIO, datetime, httpheader
+import sys, StringIO, datetime
 import os
 
 import rdflib
