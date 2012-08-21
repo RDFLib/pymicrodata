@@ -16,6 +16,10 @@ pyMicrodata distiller/parser library. The distribution contains:
 
 - ./Doc-pyMicrodata: (epydoc) documentation of the classes and functions
 
+- ./generatePyMicrodataDoc: a shell script to generate the documentation (using epydoc)
+
+- ./epydoc.css: the CSS file the documentation generation uses (it is then copied to the documentation area itself)
+
 
 The package primarily depends on:
  - RDFLib<http://rdflib.net>. Version 3.2.0 or higher is strongly recommended.
