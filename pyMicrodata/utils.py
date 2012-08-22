@@ -9,8 +9,8 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 """
 
 """
-$Id: utils.py,v 1.5 2012/04/02 16:16:27 ivan Exp $
-$Date: 2012/04/02 16:16:27 $
+$Id: utils.py,v 1.6 2012/08/22 12:08:52 ivan Exp $
+$Date: 2012/08/22 12:08:52 $
 """
 import os, os.path, sys
 (py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
