@@ -5,7 +5,6 @@ Run the microdata extraction package locally
 
 import sys
 
-sys.path.insert(0,"/Users/ivan/Source/PythonModules/MyModules/pyMicrodata-1.0")
 sys.path.insert(0,"/Users/ivan/W3C/dev/2004/PythonLib-IH/rdfa-1.1")
 
 # You may want to adapt this to your environment...

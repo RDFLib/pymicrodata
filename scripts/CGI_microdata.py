@@ -81,7 +81,7 @@ else :
 
 if uri == "referer" :
 	uri    = os.getenv('HTTP_REFERER')
-	newuri = "http://www.w3.org/2012/pyRdfa/extract?uri=" + uri
+	newuri = "http://www.w3.org/2012/pyMicrodata/extract?uri=" + uri
 	print "Status: 302 Moved"
 	print "Location: " + newuri
 	print
