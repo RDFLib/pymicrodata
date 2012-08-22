@@ -20,10 +20,10 @@ pyMicrodata distiller/parser library. The distribution contains:
 
 - ./epydoc.css: the CSS file the documentation generation uses (it is then copied to the documentation area itself)
 
-
 The package primarily depends on:
  - RDFLib<http://rdflib.net>. Version 3.2.0 or higher is strongly recommended.
  - html5lib<http://code.google.com/p/html5lib/> (in the additional packages folder)
+ - pyRdflibExtras for a better (and more complete) serialization; is part of the pyrdfa3 package on github: https://github.com/RDFLib/pyrdfa3
     
 The package has been tested on Python version 2.4 and higher. Python 2.6 is strongly recommended. The package
 does not run with Python 3.
