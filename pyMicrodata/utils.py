@@ -13,6 +13,8 @@ $Id: utils.py,v 1.5 2012/04/02 16:16:27 ivan Exp $
 $Date: 2012/04/02 16:16:27 $
 """
 import os, os.path, sys
+(py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
+
 import urllib, urlparse, urllib2
 import re
 from datetime import datetime
@@ -35,27 +37,52 @@ def fragment_escape( name ) :
 		
 #################################################################################
 
-def generate_URI(base, val) :
+def generate_URI(base, v) :
 	"""
 	Generate an (absolute) URI; if val is a fragment, then using it with base,
 	otherwise just return the value
 	@param base: Absolute URI for base
-	@param val: relative or absolute URI
+	@param v: relative or absolute URI
 	"""
-	if is_absolute_URI( val ) :
-		return val
-	else :
-		if urlparse.urlparse(base)[0] == "" :
-			# Simple file name...
-			return base + '#' + val.strip()
-		else :
-			# Trust the python library...
-			# Well, not quite:-) there is what is, in my view, a bug in the urljoin; in some cases it
-			# swallows the '#' or '?' character at the end. This is clearly a problem with
-			# Semantic Web URI-s
-			val = fragment_escape(val.strip())
-			parsed = urlparse.urlsplit(base)
-			return urlparse.urlunsplit( (parsed.scheme,parsed.netloc,parsed.path,parsed.query,val) )
+	if is_absolute_URI( v ) :
+		return v
+	else :		
+		# UGLY!!! There is a bug for a corner case in python version <= 2.5.X
+		if len(v) > 0 and v[0] == '?' and py_v_minor <= 5 :
+			return base+val
+		####
+		
+		# Trust the python library...
+		# Well, not quite:-) there is what is, in my view, a bug in the urljoin; in some cases it
+		# swallows the '#' or '?' character at the end. This is clearly a problem with
+		# Semantic Web URI-s
+		v = fragment_escape(v.strip())
+		joined = urlparse.urljoin(base, v)
+		try :
+			if v[-1] != joined[-1] and (v[-1] == "#" or v[-1] == "?") :
+				return joined + v[-1]
+			else :
+				return joined
+		except :
+			return joined		
+		
+		#
+		#
+		#
+		#
+		#
+		#
+		#if urlparse.urlparse(base)[0] == "" :
+		#	# Simple file name...
+		#	return base + '#' + val.strip()
+		#else :
+		#	# Trust the python library...
+		#	# Well, not quite:-) there is what is, in my view, a bug in the urljoin; in some cases it
+		#	# swallows the '#' or '?' character at the end. This is clearly a problem with
+		#	# Semantic Web URI-s
+		#	val = fragment_escape(val.strip())
+		#	parsed = urlparse.urlsplit(base)
+		#	return urlparse.urlunsplit( (parsed.scheme,parsed.netloc,parsed.path,parsed.query,val) )
 
 #################################################################################
 def generate_RDF_collection( graph, vals ) :
