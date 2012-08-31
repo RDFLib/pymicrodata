@@ -20,7 +20,11 @@ Added a reaction on the RDFaStopParsing exception: if raised while setting up th
 is stopped (on the whole subtree)
 """
 
-import urlparse, urllib
+import sys
+if sys.version_info[0] >= 3 :
+	from urllib.parse import urlsplit, urlunsplit
+else :	
+	from urlparse import urlsplit, urlunsplit
 
 import rdflib
 from rdflib	import URIRef
@@ -262,7 +266,7 @@ class MicrodataConversion(Microdata) :
 			from pyRdfa.initialcontext import initial_context
 			retval = {}
 			vocabs = initial_context["http://www.w3.org/2011/rdfa-context/rdfa-1.1"].ns
-			for prefix in vocabs.keys() :
+			for prefix in list(vocabs.keys()) :
 				uri = vocabs[prefix]				
 				if uri not in vocab_names and uri not in registry : retval[uri] = prefix
 			return retval
@@ -278,7 +282,7 @@ class MicrodataConversion(Microdata) :
 		# Add the prefixes defined in the RDFa initial context to improve the outlook of the output
 		from pyRdfa.initialcontext import initial_context
 		vocabs = initial_context["http://www.w3.org/2011/rdfa-context/rdfa-1.1"].ns
-		for prefix in vocabs.keys() :
+		for prefix in list(vocabs.keys()) :
 			uri = vocabs[prefix]
 			if uri not in registry :
 				# if it is in the registry, then it may have needed some special microdata massage...
@@ -339,16 +343,16 @@ class MicrodataConversion(Microdata) :
 		# Step 7, 8: Check the registry for possible keys and set the vocab
 		vocab = None
 		if itype != None :
-			for key in registry.keys() :
+			for key in list(registry.keys()) :
 				if itype.startswith(key) :
 					# There is a predefined vocabulary for this type...
 					vocab = key
 					break
 			# The registry has not set the vocabulary; has to be extracted from the type
 			if vocab == None :
-				parsed = urlparse.urlsplit(itype)
+				parsed = urlsplit(itype)
 				if parsed.fragment != "" :
-					vocab = urlparse.urlunsplit( (parsed.scheme,parsed.netloc,parsed.path,parsed.query,"") ) + '#'					
+					vocab = urlunsplit( (parsed.scheme,parsed.netloc,parsed.path,parsed.query,"") ) + '#'					
 				elif parsed.path == "" and parsed.query == "" :
 					vocab = itype
 					if vocab[-1] != '/' : vocab += '/'
@@ -386,7 +390,7 @@ class MicrodataConversion(Microdata) :
 					property_list[predicate] = [ value ]
 						
 		# step 12: generate the triples
-		for property in property_list.keys() :
+		for property in list(property_list.keys()) :
 			self.generate_property_values( subject, URIRef(property), property_list[property], context )
 			
 		# Step 13: return the subject to the caller
@@ -401,7 +405,7 @@ class MicrodataConversion(Microdata) :
 		@param context: an instance of an evaluation context
 		@type context: L{Evaluation_Context}
 		"""
-		if debug: print "name: %s, %s" % (name,context)
+		if debug: print( "name: %s, %s" % (name,context) )
 		
 		# Step 1: absolute URI-s are fine, take them as they are
 		if is_absolute_URI(name) : return name

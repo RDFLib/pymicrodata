@@ -48,12 +48,19 @@ $Id: __init__.py,v 1.14 2012/08/22 12:08:52 ivan Exp $ $Date: 2012/08/22 12:08:5
 
 """
 
-__version__ = "1.0"
+__version__ = "1.1"
 __author__  = 'Ivan Herman'
 __contact__ = 'Ivan Herman, ivan@w3.org'
-__license__ = u'W3C® SOFTWARE NOTICE AND LICENSE, http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231'
 
-import sys, StringIO, datetime
+import sys
+PY3 = (sys.version_info[0] >= 3)
+
+if PY3 :
+	from io import StringIO
+else :
+	from StringIO import StringIO
+
+import datetime
 import os
 
 import rdflib
@@ -68,7 +75,10 @@ else :
 	from rdflib.RDFS	import RDFSNS as ns_rdfs
 	from rdflib.RDF		import RDFNS  as ns_rdf
 
-import urlparse
+if PY3 :
+	from urllib.parse import urlparse
+else :
+	from urlparse import urlparse
 
 debug = False
 
@@ -157,7 +167,7 @@ class pyMicrodata :
 			retval.add( (htbnode, ns_rdf["type"], ns_ht["Request"]) )
 			retval.add( (htbnode, ns_ht["requestURI"], Literal(uri)) )
 		
-		if self.http_status != 200 :
+		if self.http_status != None and self.http_status != 200:
 			htbnode = BNode()
 			retval.add( (bnode, ns_micro["context"],htbnode) )
 			retval.add( (htbnode, ns_rdf["type"], ns_ht["Response"]) )
@@ -174,10 +184,17 @@ class pyMicrodata :
 		@type name: string or a file-like object
 		@return: a file like object if opening "name" is possible and successful, "name" otherwise
 		"""
-		if isinstance(name, basestring) :
+		try :
+			# Python 2 branch
+			isstring = isinstance(name, basestring)
+		except :
+			# Python 3 branch
+			isstring = isinstance(name, str)
+
+		if isstring :
 			# check if this is a URI, ie, if there is a valid 'scheme' part
 			# otherwise it is considered to be a simple file
-			if urlparse.urlparse(name)[0] != "" :
+			if urlparse(name)[0] != "" :
 				url_request = URIOpener(name)
 				self.base   = url_request.location
 				return url_request.data
@@ -221,12 +238,14 @@ class pyMicrodata :
 			input = None
 			try :
 				input = self._get_input(name)
-			except HTTPError, h:
+			except HTTPError :
+				h = sys.exc_info()[1]
 				self.http_status = h.http_code
 				if not rdfOutput : raise h
 				return self._generate_error_graph(graph, "HTTP Error: %s (%s)" % (h.http_code,h.msg), uri=name)
-			except Exception, e :
+			except Exception :
 				# Something nasty happened:-(
+				e = sys.exc_info()[1]
 				self.http_status = 500
 				if not rdfOutput : raise e
 				return self._generate_error_graph(graph, str(e), uri=name)
@@ -239,15 +258,23 @@ class pyMicrodata :
 				parser = html5lib.HTMLParser(tree=html5lib.treebuilders.getTreeBuilder("dom"))
 				dom = parser.parse(input)
 				return self.graph_from_DOM(dom, graph)
-			except Exception, e :
+			except ImportError :
+				msg = "HTML5 parser not available. Try installing html5lib <http://code.google.com/p/html5lib>"
+				raise ImportError(msg)
+			except Exception :
 				# Something nasty happened:-(
+				e = sys.exc_info()[1]
 				self.http_status = 400
 				if not rdfOutput : raise e
 				return self._generate_error_graph(graph, str(e), uri=name)	
 
-		except Exception, e :
+		except Exception :
 			# Something nasty happened:-(
-			self.http_status = 500
+			e = sys.exc_info()[1]
+			if isinstance(e, ImportError) :
+				self.http_status = None
+			else :
+				self.http_status = 500
 			if not rdfOutput : raise e
 			return self._generate_error_graph(graph, str(e), uri=name)
 	
@@ -304,8 +331,7 @@ def processURI(uri, outputFormat, form) :
 		input	= form["uploaded"].file
 		base	= ""
 	elif uri == "text:" :
-		import StringIO
-		input	= StringIO.StringIO(form.getfirst("text"))
+		input	= StringIO(form.getfirst("text"))
 		base	= ""
 	else :
 		input	= uri
@@ -333,7 +359,7 @@ def processURI(uri, outputFormat, form) :
 	#	os.environ['rdfaerror'] = 'true'
 
 	try :
-		graph = processor.rdf_from_source(input, outputFormat, rdfOutput = ("forceRDFOutput" in form.keys()) or not htmlOutput)
+		graph = processor.rdf_from_source(input, outputFormat, rdfOutput = ("forceRDFOutput" in list(form.keys())) or not htmlOutput)
 		if outputFormat == "n3" :
 			retval = 'Content-Type: text/rdf+n3; charset=utf-8\n'
 		elif outputFormat == "nt" or outputFormat == "turtle" :
@@ -346,9 +372,9 @@ def processURI(uri, outputFormat, form) :
 
 		retval += graph
 		return retval
-	except HTTPError, h :
+	except HTTPError :
 		import cgi
-		
+		h = sys.exc_info()[1]
 		retval = 'Content-type: text/html; charset=utf-8\nStatus: %s \n\n' % h.http_code
 		retval += "<html>\n"		
 		retval += "<head>\n"
@@ -366,7 +392,6 @@ def processURI(uri, outputFormat, form) :
 		(type,value,traceback) = sys.exc_info()
 
 		import traceback, cgi
-		import StringIO
 
 		retval = 'Content-type: text/html; charset=utf-8\nStatus: %s\n\n' % processor.http_status
 		retval += "<html>\n"		
@@ -375,7 +400,7 @@ def processURI(uri, outputFormat, form) :
 		retval += "</head><body>\n"
 		retval += "<h1>Exception in distilling Microdata</h1>\n"
 		retval += "<pre>\n"
-		strio  = StringIO.StringIO()
+		strio  = StringIO()
 		traceback.print_exc(file=strio)
 		retval += strio.getvalue()
 		retval +="</pre>\n"

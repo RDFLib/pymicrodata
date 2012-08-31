@@ -25,8 +25,7 @@ The package primarily depends on:
  - html5lib<http://code.google.com/p/html5lib/> (in the additional packages folder)
  - pyRdfaExtras for a better (and more complete) serialization; is part of the pyrdfa3 package on github: https://github.com/RDFLib/pyrdfa3
     
-The package has been tested on Python version 2.4 and higher. Python 2.6 is strongly recommended. The package
-does not run with Python 3.
+The package has been tested on Python version 2.4 and higher. Python 2.6 is strongly recommended. The package has been adapted to Python 3, though not yet thoroughly tested, because the html5lib does not have yet a Python 3 version.
 
 For the details on the conversion of Microdata to RDF, see:
 

@@ -17,6 +17,7 @@ $Date: 2012/03/26 13:18:31 $
 """
 
 import sys
+(py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
 
 _registry = """
 {
@@ -79,7 +80,7 @@ _myRegistry = """
 
 registry   = []
 myRegistry = []
-if sys.version_info[1] >= 6 :
+if py_v_major >= 3 or (py_v_major == 2 and py_v_minor >= 6) :
 	import json
 	registry   = json.loads(_registry)
 	myRegistry = json.loads(_myRegistry)
@@ -88,7 +89,7 @@ else :
 	registry   = simplejson.loads(_registry)
 	myRegistry = simplejson.loads(_myRegistry)
 
-for (k,v) in myRegistry.items() : registry[k] = v
+for (k,v) in list(myRegistry.items()) : registry[k] = v
 
 		
 

@@ -15,7 +15,18 @@ $Date: 2012/08/22 12:08:52 $
 import os, os.path, sys
 (py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
 
-import urllib, urlparse, urllib2
+if py_v_major >= 3 :
+	from urllib.request import Request, urlopen
+	from urllib.parse   import urljoin, quote, urlparse
+	from http.server    import BaseHTTPRequestHandler
+	from urllib.error   import HTTPError as urllib_HTTPError
+else :
+	from urllib2        import Request, urlopen
+	from urllib2        import HTTPError as urllib_HTTPError
+	from urlparse       import urljoin, urlparse
+	from urllib         import quote
+	from BaseHTTPServer import BaseHTTPRequestHandler
+
 import re
 from datetime import datetime
 
@@ -28,12 +39,12 @@ else :
 
 #################################################################################
 def is_absolute_URI( uri ) :
-	return urlparse.urlparse(uri)[0] != ""
+	return urlparse(uri)[0] != ""
 
 #################################################################################
 
 def fragment_escape( name ) :
-	return urllib.quote(name, '/~:-.')
+	return quote(name, '/~:-.')
 		
 #################################################################################
 
@@ -48,7 +59,7 @@ def generate_URI(base, v) :
 		return v
 	else :		
 		# UGLY!!! There is a bug for a corner case in python version <= 2.5.X
-		if len(v) > 0 and v[0] == '?' and py_v_minor <= 5 :
+		if len(v) > 0 and v[0] == '?' and (py_v_major < 3 and py_v_minor <= 5) :
 			return base+val
 		####
 		
@@ -57,7 +68,7 @@ def generate_URI(base, v) :
 		# swallows the '#' or '?' character at the end. This is clearly a problem with
 		# Semantic Web URI-s
 		v = fragment_escape(v.strip())
-		joined = urlparse.urljoin(base, v)
+		joined = urljoin(base, v)
 		try :
 			if v[-1] != joined[-1] and (v[-1] == "#" or v[-1] == "?") :
 				return joined + v[-1]
@@ -65,24 +76,6 @@ def generate_URI(base, v) :
 				return joined
 		except :
 			return joined		
-		
-		#
-		#
-		#
-		#
-		#
-		#
-		#if urlparse.urlparse(base)[0] == "" :
-		#	# Simple file name...
-		#	return base + '#' + val.strip()
-		#else :
-		#	# Trust the python library...
-		#	# Well, not quite:-) there is what is, in my view, a bug in the urljoin; in some cases it
-		#	# swallows the '#' or '?' character at the end. This is clearly a problem with
-		#	# Semantic Web URI-s
-		#	val = fragment_escape(val.strip())
-		#	parsed = urlparse.urlsplit(base)
-		#	return urlparse.urlunsplit( (parsed.scheme,parsed.netloc,parsed.path,parsed.query,val) )
 
 #################################################################################
 def generate_RDF_collection( graph, vals ) :
@@ -96,7 +89,7 @@ def generate_RDF_collection( graph, vals ) :
 	# generate an RDF List, returns the head
 	# list has all the elements in RDF format already
 	heads = [ BNode() for r in vals ] + [ ns_rdf["nil"] ]
-	for i in xrange(0, len(vals)) :
+	for i in range(0, len(vals)) :
 		graph.add( (heads[i], ns_rdf["first"], vals[i]) )
 		graph.add( (heads[i], ns_rdf["rest"],  heads[i+1]) )
 	return heads[0]
@@ -290,11 +283,11 @@ class URIOpener :
 		"""		
 		try :
 			# Note the removal of the fragment ID. This is necessary, per the HTTP spec
-			req = urllib2.Request(url=name.split('#')[0])
+			req = Request(url=name.split('#')[0])
 
 			req.add_header('Accept', 'text/html, application/xhtml+xml')
 				
-			self.data		= urllib2.urlopen(req)
+			self.data		= urlopen(req)
 			self.headers	= self.data.info()
 
 			if URIOpener.CONTENT_LOCATION in self.headers :
@@ -302,12 +295,13 @@ class URIOpener :
 			else :
 				self.location = name
 				
-		except urllib2.HTTPError, e :
+		except urllib_HTTPError :
+			e = sys.exc_info()[1]
 			from pyMicrodata import HTTPError
-			import BaseHTTPServer
-			msg = BaseHTTPServer.BaseHTTPRequestHandler.responses[e.code]
+			msg = BaseHTTPRequestHandler.responses[e.code]
 			raise HTTPError('%s' % msg[1], e.code)
-		except Exception, e :
+		except Exception :
+			e = sys.exc_info()[1]
 			from pyMicrodata import MicrodataError
 			raise MicrodataError('%s' % e)
 
