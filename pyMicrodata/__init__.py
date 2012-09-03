@@ -131,7 +131,7 @@ class pyMicrodata :
 	@ivar base: the base value for processing
 	@ivar http_status: HTTP Status, to be returned when the package is used via a CGI entry. Initially set to 200, may be modified by exception handlers
 	"""
-	def __init__(self, vocab_expansion = True, base = "") :
+	def __init__(self, base = "", vocab_expansion = True) :
 		"""
 		@keyword base: URI for the default "base" value (usually the URI of the file to be processed)
 		@keyword vocab_expansion: whether vocab expansion should be performed or not

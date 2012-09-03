@@ -26,6 +26,8 @@ if sys.version_info[0] >= 3 :
 else :	
 	from urlparse import urlsplit, urlunsplit
 
+from types import *
+
 import rdflib
 from rdflib	import URIRef
 from rdflib	import Literal
@@ -39,6 +41,8 @@ else :
 	from rdflib.Graph	import Graph
 	from rdflib.RDFS	import RDFSNS as ns_rdfs
 	from rdflib.RDF		import RDFNS  as ns_rdf
+	
+ns_owl = Namespace("http://www.w3.org/2002/07/owl#")
 
 from pyMicrodata.registry import registry, vocab_names
 from pyMicrodata.utils	  import generate_RDF_collection, get_Literal, get_time_type
@@ -306,6 +310,18 @@ class MicrodataConversion(Microdata) :
 		list = generate_RDF_collection( self.graph, item_list )
 		self.graph.add( (URIRef(self.base),self.ns_md["item"],list) )
 		
+		# If the vocab expansion is also switched on, this is the time to do it.
+		# I have put this into a try:... except:, because there is a dependency on the pyRdfa package. If that
+		# is not available, the rest of the processing should go on...
+		if self.vocab_expansion :
+			try :
+				from pyRdfa.rdfs.process import MiniOWL
+				MiniOWL(self.graph).closure()
+			except :
+				import sys
+				print sys.exc_info()
+				pass
+		
 	def generate_triples( self, item, context ) :
 		"""
 		Generate the triples for a specific item. See the W3C Note for the details.
@@ -528,14 +544,15 @@ class MicrodataConversion(Microdata) :
 		# generate triples with a list, or a bunch of triples, depending on the context
 		# The biggest complication is to find the method...
 		method = ValueMethod.unordered
+		superproperties = None
 		
 		# This is necessary because predicate is a URIRef, and I am not sure the comparisons would work well
 		# to be tested, in fact...
 		pred_key = "%s" % predicate
 		for key in registry :
 			if predicate.startswith(key) :
+				# This the part of the registry corresponding to the predicate's vocabulary
 				registry_object = registry[key]
-				name = pred_key[len(key):]
 				try :
 					if "multipleValues" in registry_object : method = registry_object["multipleValues"]
 					# The generic definition can be overwritten for a specific property. The simplest is to rely on a 'try'
@@ -544,6 +561,27 @@ class MicrodataConversion(Microdata) :
 						method = registry_object["properties"][pred_key[len(key):]]["multipleValues"]
 					except :
 						pass
+				except :
+					pass
+				# Get the possible vocabulary extension terms into the graph
+				try :
+					subpr = registry_object["properties"][pred_key[len(key):]]["subPropertyOf"]
+					if subpr != None :
+						if isinstance(subpr,list) :
+							for p in subpr :
+								self.graph.add( (predicate, ns_rdfs["subPropertyOf"], URIRef(p)) )
+						else :
+							self.graph.add( (predicate, ns_rdfs["subPropertyOf"], URIRef(subpr)) )
+				except :
+					pass
+				try :
+					subpr = registry_object["properties"][pred_key[len(key):]]["equivalentProperty"]
+					if subpr != None :
+						if isinstance(subpr,list) :
+							for p in subpr :
+								self.graph.add( (predicate, ns_owl["equivalentProperty"], URIRef(p)) )
+						else :
+							self.graph.add( (predicate, ns_owl["equivalentProperty"], URIRef(subpr)) )
 				except :
 					pass
 				break
