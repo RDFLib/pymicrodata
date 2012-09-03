@@ -40,7 +40,8 @@ _registry = """
       "recipeInstructions": {"multipleValues": "list"},
       "seasons": {"multipleValues": "list"},
       "subEvents": {"multipleValues": "list"},
-      "tracks": {"multipleValues": "list"}
+      "tracks": {"multipleValues": "list"},
+	  "additionalType" : {"subPropertyOf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"}
     }
   },
   "http://xmlns.com/foaf/0.1/": {
@@ -91,7 +92,6 @@ else :
 
 for (k,v) in list(myRegistry.items()) : registry[k] = v
 
-		
 
 
 

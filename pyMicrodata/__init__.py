@@ -131,13 +131,15 @@ class pyMicrodata :
 	@ivar base: the base value for processing
 	@ivar http_status: HTTP Status, to be returned when the package is used via a CGI entry. Initially set to 200, may be modified by exception handlers
 	"""
-	
-	def __init__(self, base = "") :
+	def __init__(self, vocab_expansion = True, base = "") :
 		"""
 		@keyword base: URI for the default "base" value (usually the URI of the file to be processed)
+		@keyword vocab_expansion: whether vocab expansion should be performed or not
+		@type vocab_expansion: Boolean
 		"""
-		self.http_status = 200
-		self.base = base
+		self.http_status     = 200
+		self.base            = base
+		self.vocab_expansion = vocab_expansion
 		
 	def _generate_error_graph(self, pgraph, full_msg, uri = None) :
 		"""
@@ -210,7 +212,8 @@ class pyMicrodata :
 	def graph_from_DOM(self, dom, graph = None) :
 		"""
 		Extract the RDF Graph from a DOM tree.
-		@param dom: a DOM Node element, the top level entry node for the whole tree (to make it clear, a dom.documentElement is used to initiate processing)
+		@param dom: a DOM Node element, the top level entry node for the whole tree (to make it clear, a
+		dom.documentElement is used to initiate processing)
 		@keyword graph: an RDF Graph (if None, than a new one is created)
 		@type graph: rdflib Graph instance. If None, a new one is created.
 		@return: an RDF Graph
@@ -220,7 +223,7 @@ class pyMicrodata :
 			# Create the RDF Graph, that will contain the return triples...
 			graph   = Graph()
 		
-		MicrodataConversion(dom.documentElement, graph, base=self.base).convert()
+		MicrodataConversion(dom.documentElement, graph, vocab_expansion = self.vocab_expansion, base=self.base).convert()
 		return graph
 	
 	def graph_from_source(self, name, graph = None, rdfOutput = False) :

@@ -126,8 +126,8 @@ class Evaluation_Context :
 		
 class Microdata :
 	"""
-	This class encapsulates methods that are defined by the U{microdata spec<http://dev.w3.org/html5/md/Overview.html>}, as opposed to
-	the RDF conversion note.
+	This class encapsulates methods that are defined by the U{microdata spec<http://dev.w3.org/html5/md/Overview.html>},
+	as opposed to the RDF conversion note.
 	
 	@ivar document: top of the DOM tree, as returned by the HTML5 parser
 	@ivar base: the base URI of the Dom tree, either set from the outside or via a @base element
@@ -174,13 +174,12 @@ class Microdata :
 		
 	def get_item_properties( self, item ) :
 		"""
-		Collect the item's properties, ie, all DOM descendent nodes with @itemprop until the subtree hits another @itemscope. @itemrefs are also added at this point.
+		Collect the item's properties, ie, all DOM descendent nodes with @itemprop until the subtree hits another
+		@itemscope. @itemrefs are also added at this point.
 		
 		@param item: current item
 		@type item: DOM Node
 		@return: array of items, ie, DOM Nodes
-		
-		
 		"""
 		# go down the tree until another itemprop is hit, take care of the itemrefs, too; see the microdata doc
 		# probably the ugliest stuff
@@ -248,14 +247,17 @@ class MicrodataConversion(Microdata) :
 	@ivar ns_md: the Namespace for the microdata vocabulary
 	@ivar base: the base of the Dom tree, either set from the outside or via a @base element
 	"""
-	def __init__( self, document, graph, base = None ) :
+	def __init__( self, document, graph, vocab_expansion = True, base = None ) :
 		"""
 		@param graph: an RDF graph; an RDFLib Graph
 		@type graph: RDFLib Graph
 		@param document: top of the DOM tree, as returned by the HTML5 parser
-		@param base: the base of the Dom tree, either set from the outside or via a @base element
+		@keyword base: the base of the Dom tree, either set from the outside or via a @base element
+		@keyword vocab_expansion: whether vocab expansion should be performed or not
+		@type vocab_expansion: Boolean
 		"""
 		Microdata.__init__(self, document, base)
+		self.vocab_expansion = vocab_expansion
 		self.graph    = graph
 		self.ns_md    = Namespace( MD_VOCAB )
 		self.graph.bind( "md",MD_VOCAB )
@@ -280,13 +282,17 @@ class MicrodataConversion(Microdata) :
 					self.graph.bind( vocab_names[hvocab],hvocab )
 					
 		# Add the prefixes defined in the RDFa initial context to improve the outlook of the output
-		from pyRdfa.initialcontext import initial_context
-		vocabs = initial_context["http://www.w3.org/2011/rdfa-context/rdfa-1.1"].ns
-		for prefix in list(vocabs.keys()) :
-			uri = vocabs[prefix]
-			if uri not in registry :
-				# if it is in the registry, then it may have needed some special microdata massage...
-				self.graph.bind( prefix,uri )
+		# I put this into a try: except: in case the pyRdfa package is not available...
+		try :
+			from pyRdfa.initialcontext import initial_context
+			vocabs = initial_context["http://www.w3.org/2011/rdfa-context/rdfa-1.1"].ns
+			for prefix in list(vocabs.keys()) :
+				uri = vocabs[prefix]
+				if uri not in registry :
+					# if it is in the registry, then it may have needed some special microdata massage...
+					self.graph.bind( prefix,uri )
+		except :
+			pass
 		
 	def convert( self ) :
 		"""
