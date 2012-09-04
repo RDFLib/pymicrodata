@@ -68,6 +68,7 @@ def generate_URI(base, v) :
 		# swallows the '#' or '?' character at the end. This is clearly a problem with
 		# Semantic Web URI-s
 		v = fragment_escape(v.strip())
+		base = "http://www.w3.org/namivan.html"
 		joined = urljoin(base, v)
 		try :
 			if v[-1] != joined[-1] and (v[-1] == "#" or v[-1] == "?") :

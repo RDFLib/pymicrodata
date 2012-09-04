@@ -240,7 +240,6 @@ class Microdata :
 		else :
 			return None
 				
-
 class MicrodataConversion(Microdata) :
 	"""
 	Top level class encapsulating the conversion algorithms as described in the W3C note.
@@ -435,7 +434,11 @@ class MicrodataConversion(Microdata) :
 		# Step 2: if type is none, that this is just used as a fragment
 		# if not context.current_type  :
 		if context.current_type == None and context.current_vocabulary == None  :
-			return generate_URI( self.base, name )
+			if self.base[-1] == '#' :
+				b = self.base[:-1]
+			else :
+				b = self.base
+			return b + '#' + fragment_escape(name)
 
 		#if context.current_type == None :
 		#	return generate_URI( self.base, name )
