@@ -44,11 +44,9 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 
 """
 $Id: __init__.py,v 1.14 2012/08/22 12:08:52 ivan Exp $ $Date: 2012/08/22 12:08:52 $
-
-
 """
 
-__version__ = "1.1"
+__version__ = "1.2"
 __author__  = 'Ivan Herman'
 __contact__ = 'Ivan Herman, ivan@w3.org'
 
@@ -131,15 +129,18 @@ class pyMicrodata :
 	@ivar base: the base value for processing
 	@ivar http_status: HTTP Status, to be returned when the package is used via a CGI entry. Initially set to 200, may be modified by exception handlers
 	"""
-	def __init__(self, base = "", vocab_expansion = True) :
+	def __init__(self, base = "", vocab_expansion = False, vocab_cache = True) :
 		"""
 		@keyword base: URI for the default "base" value (usually the URI of the file to be processed)
 		@keyword vocab_expansion: whether vocab expansion should be performed or not
 		@type vocab_expansion: Boolean
+		@keyword vocab_cache: if vocabulary expansion is done, then perform caching of the vocabulary data
+		@type vocab_cache: Boolean
 		"""
 		self.http_status     = 200
 		self.base            = base
 		self.vocab_expansion = vocab_expansion
+		self.vocab_cache     = vocab_cache
 		
 	def _generate_error_graph(self, pgraph, full_msg, uri = None) :
 		"""
@@ -223,7 +224,12 @@ class pyMicrodata :
 			# Create the RDF Graph, that will contain the return triples...
 			graph   = Graph()
 		
-		MicrodataConversion(dom.documentElement, graph, vocab_expansion = self.vocab_expansion, base=self.base).convert()
+		conversion = MicrodataConversion(dom.documentElement, 
+			                             graph,  
+			                             base            = self.base, 
+			                             vocab_expansion = self.vocab_expansion, 
+			                             vocab_cache     = self.vocab_cache)
+		conversion.convert()
 		return graph
 	
 	def graph_from_source(self, name, graph = None, rdfOutput = False) :
@@ -330,6 +336,19 @@ def processURI(uri, outputFormat, form) :
 	@return: serialized graph
 	@rtype: string
 	"""
+	def _get_option(param, compare_value, default) :
+		param_old = param.replace('_','-')
+		if param in list(form.keys()) :
+			val = form.getfirst(param).lower()
+			return val == compare_value
+		elif param_old in list(form.keys()) :
+			# this is to ensure the old style parameters are still valid...
+			# in the old days I used '-' in the parameters, the standard favours '_'
+			val = form.getfirst(param_old).lower()
+			return val == compare_value
+		else :
+			return default
+
 	if uri == "uploaded:" :
 		input	= form["uploaded"].file
 		base	= ""
@@ -340,7 +359,10 @@ def processURI(uri, outputFormat, form) :
 		input	= uri
 		base	= uri
 
-	processor = pyMicrodata(base = base)
+	vocab_cache         = _get_option( "vocab_cache", "true", True)
+	vocab_expansion     = _get_option( "vocab_expansion", "true", False)
+
+	processor = pyMicrodata(base = base, vocab_expansion = vocab_expansion, vocab_cache = vocab_cache)
 
 	# Decide the output format; the issue is what should happen in case of a top level error like an inaccessibility of
 	# the html source: should a graph be returned or an HTML page with an error message?
