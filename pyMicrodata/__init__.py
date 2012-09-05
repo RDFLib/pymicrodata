@@ -43,7 +43,7 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 """
 
 """
-$Id: __init__.py,v 1.14 2012/08/22 12:08:52 ivan Exp $ $Date: 2012/08/22 12:08:52 $
+$Id: __init__.py,v 1.15 2012/09/05 16:40:43 ivan Exp $ $Date: 2012/09/05 16:40:43 $
 """
 
 __version__ = "1.2"

@@ -141,7 +141,7 @@ graph = pyMicrodata().graph_from_source('filename')
         target="_top">W3C&#174; SOFTWARE NOTICE AND LICENSE</a>
       </p>
       <p><strong>Version:</strong>
-        1.0
+        1.2
       </p>
       <p><strong>Contact:</strong>
         Ivan Herman, ivan@w3.org
@@ -165,7 +165,6 @@ graph = pyMicrodata().graph_from_source('filename')
 </tr>
   <tr><td class="summary">
   <ul class="nomargin">
-    <li> <strong class="uidlink"><a href="pyMicrodata.graph-module.html">pyMicrodata.graph</a></strong>: <em class="summary">Shell around RDLib's Graph</em>    </li>
     <li> <strong class="uidlink"><a href="pyMicrodata.microdata-module.html">pyMicrodata.microdata</a></strong>: <em class="summary">The core of the Microdata-&gt;RDF conversion, a more or less 
         verbatim implementation of the <a 
         href="http://www.w3.org/TR/microdata-rdf/" target="_top">W3C IG 
@@ -285,8 +284,7 @@ graph = pyMicrodata().graph_from_source('filename')
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="pyMicrodata-module.html#__license__" class="summary-name">__license__</a> = <code title="u'W3C&#174; SOFTWARE NOTICE AND LICENSE, http://www.w3.org/Consortium/Legal\
-/2002/copyright-software-20021231'"><code class="variable-quote">u'</code><code class="variable-string">W3C&#174; SOFTWARE NOTICE AND LICENSE, http://www.w</code><code class="variable-ellipsis">...</code></code>
+        <a name="PY3"></a><span class="summary-name">PY3</span> = <code title="False">False</code>
     </td>
   </tr>
 <tr>
@@ -300,28 +298,43 @@ graph = pyMicrodata().graph_from_source('filename')
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="pyMicrodata-module.html#ns_micro" class="summary-name">ns_micro</a> = <code title="rdflib.URIRef('http://www.w3.org/2012/pyMicrodata/vocab#')">rdflib.URIRef('http://www.w3.org/2012/pyMicrodata/v<code class="variable-ellipsis">...</code></code>
+        <a href="pyMicrodata-module.html#ns_micro" class="summary-name">ns_micro</a> = <code title="Namespace(u'http://www.w3.org/2012/pyMicrodata/vocab#')">Namespace(u'http://www.w3.org/2012/pyMicrodata/voca<code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="ns_dc"></a><span class="summary-name">ns_dc</span> = <code title="rdflib.URIRef('http://purl.org/dc/terms/')">rdflib.URIRef('http://purl.org/dc/terms/')</code>
+        <a name="ns_dc"></a><span class="summary-name">ns_dc</span> = <code title="Namespace(u'http://purl.org/dc/terms/')">Namespace(u'http://purl.org/dc/terms/')</code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="ns_xsd"></a><span class="summary-name">ns_xsd</span> = <code title="rdflib.URIRef('http://www.w3.org/2001/XMLSchema#')">rdflib.URIRef('http://www.w3.org/2001/XMLSchema#')</code>
+        <a name="ns_xsd"></a><span class="summary-name">ns_xsd</span> = <code title="Namespace(u'http://www.w3.org/2001/XMLSchema#')">Namespace(u'http://www.w3.org/2001/XMLSchema#')</code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="ns_ht"></a><span class="summary-name">ns_ht</span> = <code title="rdflib.URIRef('http://www.w3.org/2006/http#')">rdflib.URIRef('http://www.w3.org/2006/http#')</code>
+        <a name="ns_ht"></a><span class="summary-name">ns_ht</span> = <code title="Namespace(u'http://www.w3.org/2006/http#')">Namespace(u'http://www.w3.org/2006/http#')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyMicrodata-module.html#_bindings" class="summary-name" onclick="show_private();">_bindings</a> = <code title="{'cc': 'http://creativecommons.org/ns#',
+ 'foaf': 'http://xmlns.com/foaf/0.1/',
+ 'gr': 'http://purl.org/goodrelations/v1#',
+ 'ical': 'http://www.w3.org/2002/12/cal/icaltzd#',
+ 'ma': 'http://www.w3.org/ns/ma-ont#',
+ 'og': 'http://ogp.me/ns#',
+ 'owl': 'http://www.w3.org/2002/07/owl#',
+ 'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+..."><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">cc</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://creativecommons.org/ns#</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">foaf</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr>
@@ -334,9 +347,8 @@ graph = pyMicrodata().graph_from_source('filename')
 </table>
 <p class="indent-wrapped-lines"><b>Imports:</b>
   <span title="sys">sys</span>,
-  <span title="StringIO">StringIO</span>,
+  <span title="StringIO.StringIO">StringIO</span>,
   <span title="datetime">datetime</span>,
-  <span title="httpheader">httpheader</span>,
   <span title="os">os</span>,
   <span title="rdflib">rdflib</span>,
   <span title="rdflib.URIRef">URIRef</span>,
@@ -345,11 +357,9 @@ graph = pyMicrodata().graph_from_source('filename')
   <span title="rdflib.Namespace">Namespace</span>,
   <span title="rdflib.RDFS.RDFSNS">ns_rdfs</span>,
   <span title="rdflib.RDF.RDFNS">ns_rdf</span>,
-  <span title="urlparse">urlparse</span>,
-  <a href="pyMicrodata.graph.MyGraph-class.html" title="pyMicrodata.graph.MyGraph">Graph</a>,
+  <span title="urlparse.urlparse">urlparse</span>,
   <a href="pyMicrodata.utils.URIOpener-class.html" title="pyMicrodata.utils.URIOpener">URIOpener</a>,
   <a href="pyMicrodata.microdata.MicrodataConversion-class.html" title="pyMicrodata.microdata.MicrodataConversion">MicrodataConversion</a>,
-  <a href="pyMicrodata.graph-module.html" title="pyMicrodata.graph">graph</a>,
   <a href="pyMicrodata.microdata-module.html" title="pyMicrodata.microdata">microdata</a>,
   <a href="pyMicrodata.registry-module.html" title="pyMicrodata.registry">registry</a>,
   <a href="pyMicrodata.utils-module.html" title="pyMicrodata.utils">utils</a>
@@ -431,25 +441,6 @@ graph = pyMicrodata().graph_from_source('filename')
   </td>
 </tr>
 </table>
-<a name="__license__"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">__license__</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-<code class="variable-quote">u'</code><code class="variable-string">W3C&#174; SOFTWARE NOTICE AND LICENSE, http://www.w3.org/Consortium/Legal</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
-<code class="variable-string">/2002/copyright-software-20021231</code><code class="variable-quote">'</code>
-</pre></td></tr></table>
-</dd>
-  </dl>
-</td></tr></table>
-</div>
 <a name="ns_micro"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -462,7 +453,33 @@ graph = pyMicrodata().graph_from_source('filename')
   <dl class="fields">
     <dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
-rdflib.URIRef('http://www.w3.org/2012/pyMicrodata/vocab#')
+Namespace(u'http://www.w3.org/2012/pyMicrodata/vocab#')
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_bindings"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_bindings</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">cc</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://creativecommons.org/ns#</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">foaf</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://xmlns.com/foaf/0.1/</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">gr</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://purl.org/goodrelations/v1#</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">ical</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://www.w3.org/2002/12/cal/icaltzd#</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">ma</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://www.w3.org/ns/ma-ont#</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">og</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://ogp.me/ns#</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">owl</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://www.w3.org/2002/07/owl#</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">rdf</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">http://www.w3.org/1999/02/22-rdf-syntax-ns#</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -495,7 +512,7 @@ rdflib.URIRef('http://www.w3.org/2012/pyMicrodata/vocab#')
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Mon Apr  2 18:24:44 2012
+    Generated by Epydoc 3.0.1 on Wed Sep  5 18:39:46 2012
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
