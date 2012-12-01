@@ -12,12 +12,16 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 """
 
 """
-$Id: registry.py,v 1.5 2012/09/05 16:40:43 ivan Exp $
-$Date: 2012/09/05 16:40:43 $
+$Id: registry.py,v 1.6 2012-12-01 22:46:57 ivan Exp $
+$Date: 2012-12-01 22:46:57 $
 """
 
 import sys
 (py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
+
+# To be added soon:
+      # "Class"              : {"subPropertyOf" : "http://www.w3.org/2000/01/rdf-schema#Class"},
+      # "Property"           : {"subPropertyOf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"}
 
 _registry = """
 {
@@ -25,36 +29,41 @@ _registry = """
     "propertyURI":    "vocabulary",
     "multipleValues": "unordered",
     "properties": {
-      "blogPosts"          : {"multipleValues": "list"},
-      "breadcrumb"         : {"multipleValues": "list"},
-      "byArtist"           : {"multipleValues": "list"},
-      "creator"            : {"multipleValues": "list"},
-      "episodes"           : {"multipleValues": "list"},
-      "events"             : {"multipleValues": "list"},
-      "founders"           : {"multipleValues": "list"},
-      "itemListElement"    : {"multipleValues": "list"},
-      "musicGroupMember"   : {"multipleValues": "list"},
-      "performerIn"        : {"multipleValues": "list"},
-      "performers"         : {"multipleValues": "list"},
-      "producer"           : {"multipleValues": "list"},
-      "recipeInstructions" : {"multipleValues": "list"},
-      "seasons"            : {"multipleValues": "list"},
-      "subEvents"          : {"multipleValues": "list"},
-      "tracks"             : {"multipleValues": "list"},
-	    "additionalType"     : {"subPropertyOf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"}
+      "additionalType": {"subPropertyOf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"},
+      "blogPosts": {"multipleValues": "list"},
+      "breadcrumb": {"multipleValues": "list"},
+      "byArtist": {"multipleValues": "list"},
+      "creator": {"multipleValues": "list"},
+      "episode": {"multipleValues": "list"},
+      "episodes": {"multipleValues": "list"},
+      "event": {"multipleValues": "list"},
+      "events": {"multipleValues": "list"},
+      "founder": {"multipleValues": "list"},
+      "founders": {"multipleValues": "list"},
+      "itemListElement": {"multipleValues": "list"},
+      "musicGroupMember": {"multipleValues": "list"},
+      "performerIn": {"multipleValues": "list"},
+      "actor": {"multipleValues": "list"},
+      "actors": {"multipleValues": "list"},
+      "performer": {"multipleValues": "list"},
+      "performers": {"multipleValues": "list"},
+      "producer": {"multipleValues": "list"},
+      "recipeInstructions": {"multipleValues": "list"},
+      "season": {"multipleValues": "list"},
+      "seasons": {"multipleValues": "list"},
+      "subEvent": {"multipleValues": "list"},
+      "subEvents": {"multipleValues": "list"},
+      "track": {"multipleValues": "list"},
+      "tracks": {"multipleValues": "list"}
     }
   },
-  "http://xmlns.com/foaf/0.1/": {
-    "propertyURI"    : "vocabulary",
-    "multipleValues" : "unordered"
-  },
   "http://microformats.org/profile/hcard": {
-    "propertyURI"    : "vocabulary",
-    "multipleValues" : "unordered"
+    "propertyURI":    "vocabulary",
+    "multipleValues": "unordered"
   },
   "http://microformats.org/profile/hcalendar#": {
-    "propertyURI"    : "vocabulary",
-    "multipleValues" : "unordered",
+    "propertyURI":    "vocabulary",
+    "multipleValues": "unordered",
     "properties": {
       "categories": {"multipleValues": "list"}
     }
@@ -124,32 +133,3 @@ else :
 	myRegistry = simplejson.loads(_myRegistry)
 
 for (k,v) in list(myRegistry.items()) : registry[k] = v
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
