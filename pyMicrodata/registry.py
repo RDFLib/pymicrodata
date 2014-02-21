@@ -57,6 +57,7 @@ _registry = """
       "tracks": {"multipleValues": "list"}
     }
   },
+  
   "http://microformats.org/profile/hcard": {
     "propertyURI":    "vocabulary",
     "multipleValues": "unordered"
