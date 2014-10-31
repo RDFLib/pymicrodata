@@ -37,10 +37,12 @@ if rdflib.__version__ >= "3.0.0" :
 	from rdflib	import Graph
 	from rdflib	import RDF  as ns_rdf
 	from rdflib	import RDFS as ns_rdfs
+	from rdflib import XSD  as ns_xsd
 else :
 	from rdflib.Graph	import Graph
-	from rdflib.RDFS	import RDFSNS as ns_rdfs
-	from rdflib.RDF		import RDFNS  as ns_rdf
+	from rdflib.RDFS	import RDFSNS  as ns_rdfs
+	from rdflib.RDF		import RDFNS   as ns_rdf
+	from rdflib.Literal import _XSD_NS as ns_xsd
 	
 ns_owl = Namespace("http://www.w3.org/2002/07/owl#")
 
@@ -537,7 +539,8 @@ class MicrodataConversion(Microdata) :
 		object.
 		
 		Otherwise, either URIRefs are created for <a>, <img>, etc, elements, or a Literal; the latter
-		gets a time-related type for the <time> element.
+		gets a time-related type for the <time> element, and possible numeric types for the @value
+		attribute of the <meter> and <data> elements.
 		
 		@param node: the DOM Node for which the property values should be generated
 		@type node: DOM Node
@@ -582,6 +585,29 @@ class MicrodataConversion(Microdata) :
 			else :
 				return Literal( litval )
 
+		elif node.tagName == "meter" or node.tagName == "data" :
+			if node.hasAttribute("value") :
+				val  = node.getAttribute("value")
+				# check whether the attribute value can be defined as a float or an integer
+				try :
+					fval = int(val)
+					dt   = ns_xsd["integer"]
+				except :
+					# Well, not an int, try then a integer
+					try :
+						fval = float(val)
+						dt   = ns_xsd["float"]
+					except :
+						# Sigh, this is not a valid value, but let it go through as a plain literal nevertheless
+						fval = val
+						dt   = None
+				if dt :
+					return Literal( val, datatype = dt)
+				else :
+					return Literal( val )
+			else :
+				return Literal( "" )
+
 		else :
 			if lang :
 				return Literal( get_Literal(node), lang = lang )
@@ -590,7 +616,7 @@ class MicrodataConversion(Microdata) :
 		
 	def generate_property_values( self, subject, predicate, objects, context) :
 		"""
-		Generate the property values for for a specific subject and predicate. The context should specify whether
+		Generate the property values for a specific subject and predicate. The context should specify whether
 		the objects should be added in an RDF list or each triples individually.
 		
 		@param subject: RDF subject
