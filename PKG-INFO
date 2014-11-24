@@ -1,6 +1,6 @@
-Metadata-Version: 1.2
+Metadata-Version: 2.0
 Name: pyMicrodata
-Version: 1.2
+Version: 2.0
 Summary: Microdata to RDF distiller
 Author: Ivan Herman
 Author-email: ivan@w3.org

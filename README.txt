@@ -25,15 +25,17 @@ The package primarily depends on:
  - html5lib<http://code.google.com/p/html5lib/> (in the additional packages folder)
  - several details or simply a more complete serialization depends on the pyrdfa3 package on github: https://github.com/RDFLib/pyrdfa3. Although the basic RDF conversion works without this, some serializations may not be available and the vocabulary expansion mechanism would not work either. 
     
-The package has been tested on Python version 2.4 and higher. Python 2.6 is strongly recommended. The package has been adapted to Python 3, though not yet thoroughly tested, because html5lib does not have yet a Python 3 version.
+The package has been tested on Python version 2.4 and higher. Python 2.7 is strongly recommended. The package has been adapted to Python 3, though not yet thoroughly tested, because html5lib does not have yet a Python 3 version.
 
 For the details on the conversion of Microdata to RDF, see:
 
-http://www.w3.org/TR/2012/NOTE-microdata-rdf-20120308/
+http://www.w3.org/TR/2014/NOTE-microdata-rdf-201412XX/
 
 
 Release notes (starting from version 1.0)
 =========================================
 
 - this is the first fully released version
+
+- Version 2.0: adapted to the new version of the microdata->RDF note
 
