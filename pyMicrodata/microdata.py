@@ -51,6 +51,7 @@ from .utils	   import generate_RDF_collection, get_Literal, get_time_type
 from .utils	   import get_lang_from_hierarchy, is_absolute_URI, generate_URI, fragment_escape
 
 MD_VOCAB   = "http://www.w3.org/ns/md#"
+# todo: this variable is unnecessary
 RDFA_VOCAB = URIRef("http://www.w3.org/ns/rdfa#usesVocabulary")
 
 from . import debug
@@ -178,7 +179,8 @@ class Microdata :
 			return items
 				
 		return collect_items( self.document )
-		
+
+	# todo: We need a copy of this using @itemprop-reverse instead of @itemprop to collect the inverse properties, yielding "get_item_inverse_properties()"
 	def get_item_properties( self, item ) :
 		"""
 		Collect the item's properties, ie, all DOM descendent nodes with @itemprop until the subtree hits another
@@ -264,13 +266,16 @@ class MicrodataConversion(Microdata) :
 		@keyword vocab_cache: if vocabulary expansion is done, then perform caching of the vocabulary data
 		@type vocab_cache: Boolean
 		"""
+		# todo: remove vocab_expansion from argument list and from self; (at the beginning set it to False for debugging)
 		Microdata.__init__(self, document, base)
 		self.vocab_expansion   = vocab_expansion
 		self.vocab_cache       = vocab_cache
 		self.graph             = graph
+		# todo: the two lines below should be removed
 		self.ns_md             = Namespace( MD_VOCAB )
 		self.graph.bind( "md",MD_VOCAB )
 		self.vocabularies_used = False
+		# todo: add and empty dictionary for self.subs
 
 		# Get the vocabularies defined in the registry bound to proper names, if any...
 
@@ -316,12 +321,16 @@ class MicrodataConversion(Microdata) :
 		and generates triples for each of them; additionally, it generates a top level entry point
 		to the items from base in the form of an RDF list.
 		"""
+		# todo: the item_list construction is unnecessary; this was for the top level list only
 		item_list = []
 		for top_level_item in self.get_top_level_items() :
 			item_list.append( self.generate_triples(top_level_item, Evaluation_Context()) )
+
+		# todo: The following two lines should be removed
 		list = generate_RDF_collection( self.graph, item_list )
 		self.graph.add( (URIRef(self.base),self.ns_md["item"],list) )
-		
+
+		# todo: everything beyond this line in the method should be removed
 		# If the vocab expansion is also switched on, this is the time to do it.
 
 		# This is the version with my current proposal: the basic expansion is always there;
@@ -392,6 +401,7 @@ class MicrodataConversion(Microdata) :
 				if itype.startswith(key) :
 					# There is a predefined vocabulary for this type...
 					vocab = key
+					# todo: remove until break; there is no extra 'usesVocabulary' triple in the new release
 					# Step 7: Issue an rdfa usesVocabulary triple
 					self.graph.add( (URIRef(self.base), RDFA_VOCAB, URIRef(vocab)))
 					self.vocabularies_used = True
@@ -412,6 +422,10 @@ class MicrodataConversion(Microdata) :
 			context.current_vocabulary = vocab
 		elif item.hasAttribute("itemtype") :
 			context.current_vocabulary = None
+
+		# todo: what follows has to be duplicated with the get_item_inverse_properties and the corresponding changes
+		# but... what if the target/object is a literal? That must be filtered out...
+
 
 		# Step 10: set up a property list; this will be used to generate triples later.
 		# each entry in the dictionary is an array of RDF objects
@@ -437,7 +451,10 @@ class MicrodataConversion(Microdata) :
 						
 		# step 12: generate the triples
 		for property in list(property_list.keys()) :
+			# todo: exchange the part below for a simple cycle on te property_list
 			self.generate_property_values( subject, URIRef(property), property_list[property], context )
+			# todo: See if there is an equivalent or subproperty set for this property. The mapping, if any, is in the
+			# self.subs dictionary. If the property value is a key, the value should be used to generate a new triple like above, but with the other uriref
 			
 		# Step 13: return the subject to the caller
 		return subject
@@ -469,6 +486,7 @@ class MicrodataConversion(Microdata) :
 		#	return generate_URI( self.base, name )
 		
 		# Step 3: set the scheme
+		# todo: The whole of step 3 should disappear, there is no propertyURI method any more
 		try :
 			if context.current_vocabulary in registry and "propertyURI" in registry[context.current_vocabulary] :
 				scheme = registry[context.current_vocabulary]["propertyURI"]
@@ -479,6 +497,7 @@ class MicrodataConversion(Microdata) :
 			scheme = PropertySchemes.vocabulary
 			
 		name = fragment_escape( name )
+		# todo: the 'if' part should be removed, and only the 'else' part should remain in the main branch
 		if scheme == PropertySchemes.contextual :
 			# Step 5.1
 			s = context.current_name
@@ -497,6 +516,8 @@ class MicrodataConversion(Microdata) :
 				expandedURI =  context.current_vocabulary + '#' + name
 
 		# see if there are subproperty/equivalentproperty relations
+		# todo: This part should be changed to store, instead of the graph, the relationships in a separate
+		# self.subs dictionary, that would then map (full URIs of) properties to their equivalents
 		try :
 			vocab_mapping = registry[context.current_vocabulary]["properties"][name]
 			# if we got that far, we may have some mappings
@@ -522,7 +543,7 @@ class MicrodataConversion(Microdata) :
 					else :
 						self.graph.add( (expandedURIRef, ns_owl["equivalentProperty"], URIRef(subpr)) )
 			except :
-				# Ok, no sub property
+				# Ok, no equivalent property
 				pass
 		except :
 			# no harm done, no extra vocabulary term
@@ -596,6 +617,7 @@ class MicrodataConversion(Microdata) :
 					# Well, not an int, try then a integer
 					try :
 						fval = float(val)
+						# todo: This should be changed to double
 						dt   = ns_xsd["float"]
 					except :
 						# Sigh, this is not a valid value, but let it go through as a plain literal nevertheless
@@ -613,7 +635,8 @@ class MicrodataConversion(Microdata) :
 				return Literal( get_Literal(node), lang = lang )
 			else :
 				return Literal( get_Literal(node) )
-		
+
+	# todo: This method could be removed altogether
 	def generate_property_values( self, subject, predicate, objects, context) :
 		"""
 		Generate the property values for a specific subject and predicate. The context should specify whether

@@ -90,6 +90,7 @@ def generate_URI(base, v) :
 			return joined		
 
 #################################################################################
+# todo: remove this method, no longer in use
 def generate_RDF_collection( graph, vals ) :
 	"""
 	Generate an RDF List from vals, returns the head of the list

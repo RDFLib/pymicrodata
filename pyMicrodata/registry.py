@@ -16,6 +16,9 @@ $Id: registry.py,v 1.6 2012-12-01 22:46:57 ivan Exp $
 $Date: 2012-12-01 22:46:57 $
 """
 
+# todo for version 2.0: remove most of the registry, see appendix C of the the document
+
+
 import sys
 (py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
 
@@ -74,11 +77,12 @@ _registry = """
 
 vocab_names = {
 	"http://schema.org/"                         : "schema",
-	"http://xmlns.com/foaf/0.1/"     			       : "foaf",
+	"http://xmlns.com/foaf/0.1/"     			 : "foaf",
 	"http://microformats.org/profile/hcard#"     : "hcard",
 	"http://microformats.org/profile/hcalendar#" : "hcalendar"
 }
 
+# todo: there is no need for the separate testing registry
 # This is the local version, added mainly for testing
 _myRegistry = """
 {
@@ -133,4 +137,5 @@ else :
 	registry   = simplejson.loads(_registry)
 	myRegistry = simplejson.loads(_myRegistry)
 
+# todo: This cycle can be removed is there is no local, test registry
 for (k,v) in list(myRegistry.items()) : registry[k] = v

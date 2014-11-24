@@ -37,5 +37,11 @@ Release notes (starting from version 1.0)
 
 - this is the first fully released version
 
-- Version 2.0: adapted to the new version of the microdata->RDF note
+- Version 2.0: adapted to the new version of the microdata->RDF note. Differences, and its effect on the code, are:
+    - The content of the registry is greatly reduced, see Appendix C
+    - Remove the vocab expansion flag (although probably wise to keep it on the top, entry level, and just remove it
+    from the real processing, to avoid backward compatibility issues for deployed code
+
+
+
 

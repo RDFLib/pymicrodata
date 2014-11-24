@@ -127,6 +127,7 @@ _bindings = {
 }
 
 #########################################################################################################
+# todo: remove all occurences of vocab_expansion
 class pyMicrodata :
 	"""Main processing class for the distiller
 	@ivar base: the base value for processing
@@ -185,7 +186,7 @@ class pyMicrodata :
 		"""
 		Trying to guess whether "name" is a URI, a string; it then tries to open these as such accordingly,
 		returning a file-like object. If name is a plain string then it returns the input argument (that should
-		be, supposidly, a file-like object already)
+		be, supposedly, a file-like object already)
 		@param name: identifier of the input source
 		@type name: string or a file-like object
 		@return: a file like object if opening "name" is possible and successful, "name" otherwise
@@ -226,7 +227,8 @@ class pyMicrodata :
 		if graph == None :
 			# Create the RDF Graph, that will contain the return triples...
 			graph   = Graph()
-		
+
+		# todo: remove the vocab_expansion parameter
 		conversion = MicrodataConversion(dom.documentElement, 
 			                             graph,  
 			                             base            = self.base, 
@@ -363,6 +365,7 @@ def processURI(uri, outputFormat, form) :
 		base	= uri
 
 	vocab_cache         = _get_option( "vocab_cache", "true", True)
+	# todo: remove the vocab_expansion variable and call for the processor
 	vocab_expansion     = _get_option( "vocab_expansion", "true", False)
 
 	processor = pyMicrodata(base = base, vocab_expansion = vocab_expansion, vocab_cache = vocab_cache)
