@@ -46,7 +46,7 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 $Id: __init__.py,v 1.16 2012/10/10 15:40:10 ivan Exp $ $Date: 2012/10/10 15:40:10 $
 """
 
-__version__ = "1.2"
+__version__ = "2.0"
 __author__  = 'Ivan Herman'
 __contact__ = 'Ivan Herman, ivan@w3.org'
 
@@ -127,25 +127,18 @@ _bindings = {
 }
 
 #########################################################################################################
-# todo: remove all occurences of vocab_expansion
 class pyMicrodata :
 	"""Main processing class for the distiller
 	@ivar base: the base value for processing
 	@ivar http_status: HTTP Status, to be returned when the package is used via a CGI entry. Initially set to 200, may be modified by exception handlers
 	"""
-	def __init__(self, base = "", vocab_expansion = False, vocab_cache = True) :
+	def __init__(self, base = "") :
 		"""
 		@keyword base: URI for the default "base" value (usually the URI of the file to be processed)
-		@keyword vocab_expansion: whether vocab expansion should be performed or not
-		@type vocab_expansion: Boolean
-		@keyword vocab_cache: if vocabulary expansion is done, then perform caching of the vocabulary data
-		@type vocab_cache: Boolean
 		"""
 		self.http_status     = 200
 		self.base            = base
-		self.vocab_expansion = vocab_expansion
-		self.vocab_cache     = vocab_cache
-		
+
 	def _generate_error_graph(self, pgraph, full_msg, uri = None) :
 		"""
 		Generate an error message into the graph. This method is usually used reacting on exceptions.
@@ -158,10 +151,10 @@ class pyMicrodata :
 		else :
 			retval = pgraph
 			
-		pgraph.bind( "dc","http://purl.org/dc/terms/" )
-		pgraph.bind( "xsd",'http://www.w3.org/2001/XMLSchema#' )
-		pgraph.bind( "ht",'http://www.w3.org/2006/http#' )
-		pgraph.bind( "pyMicrodata",'http://www.w3.org/2012/pyMicrodata/vocab#' )
+		pgraph.bind("dc", "http://purl.org/dc/terms/")
+		pgraph.bind("xsd", 'http://www.w3.org/2001/XMLSchema#')
+		pgraph.bind("ht", 'http://www.w3.org/2006/http#')
+		pgraph.bind("pyMicrodata", 'http://www.w3.org/2012/pyMicrodata/vocab#')
 
 		bnode = BNode()
 		retval.add((bnode, ns_rdf["type"], ns_micro["Error"]))
@@ -170,15 +163,15 @@ class pyMicrodata :
 		
 		if uri != None :
 			htbnode = BNode()
-			retval.add( (bnode, ns_micro["context"],htbnode) )
-			retval.add( (htbnode, ns_rdf["type"], ns_ht["Request"]) )
-			retval.add( (htbnode, ns_ht["requestURI"], Literal(uri)) )
+			retval.add((bnode, ns_micro["context"],htbnode))
+			retval.add((htbnode, ns_rdf["type"], ns_ht["Request"]))
+			retval.add((htbnode, ns_ht["requestURI"], Literal(uri)))
 		
-		if self.http_status != None and self.http_status != 200:
+		if self.http_status is not None and self.http_status != 200 :
 			htbnode = BNode()
-			retval.add( (bnode, ns_micro["context"],htbnode) )
-			retval.add( (htbnode, ns_rdf["type"], ns_ht["Response"]) )
-			retval.add( (htbnode, ns_ht["responseCode"], URIRef("http://www.w3.org/2006/http#%s" % self.http_status)) )
+			retval.add((bnode, ns_micro["context"],htbnode))
+			retval.add((htbnode, ns_rdf["type"], ns_ht["Response"]))
+			retval.add((htbnode, ns_ht["responseCode"], URIRef("http://www.w3.org/2006/http#%s" % self.http_status)))
 
 		return retval
 		
@@ -224,16 +217,11 @@ class pyMicrodata :
 		@return: an RDF Graph
 		@rtype: rdflib Graph instance
 		"""
-		if graph == None :
+		if graph is None :
 			# Create the RDF Graph, that will contain the return triples...
-			graph   = Graph()
+			graph = Graph()
 
-		# todo: remove the vocab_expansion parameter
-		conversion = MicrodataConversion(dom.documentElement, 
-			                             graph,  
-			                             base            = self.base, 
-			                             vocab_expansion = self.vocab_expansion, 
-			                             vocab_cache     = self.vocab_cache)
+		conversion = MicrodataConversion(dom.documentElement, graph, base = self.base)
 		conversion.convert()
 		return graph
 	
@@ -308,7 +296,7 @@ class pyMicrodata :
 			graph = Graph()
 
 		for prefix in _bindings :
-			graph.bind(prefix,Namespace(_bindings[prefix]))
+			graph.bind(prefix, Namespace(_bindings[prefix]))
 
 		# the value of rdfOutput determines the reaction on exceptions...
 		for name in names :
@@ -342,7 +330,7 @@ def processURI(uri, outputFormat, form) :
 	@rtype: string
 	"""
 	def _get_option(param, compare_value, default) :
-		param_old = param.replace('_','-')
+		param_old = param.replace('_', '-')
 		if param in list(form.keys()) :
 			val = form.getfirst(param).lower()
 			return val == compare_value
@@ -355,20 +343,16 @@ def processURI(uri, outputFormat, form) :
 			return default
 
 	if uri == "uploaded:" :
-		input	= form["uploaded"].file
-		base	= ""
+		input = form["uploaded"].file
+		base  = ""
 	elif uri == "text:" :
-		input	= StringIO(form.getfirst("text"))
-		base	= ""
+		input = StringIO(form.getfirst("text"))
+		base  = ""
 	else :
-		input	= uri
-		base	= uri
+		input = uri
+		base  = uri
 
-	vocab_cache         = _get_option( "vocab_cache", "true", True)
-	# todo: remove the vocab_expansion variable and call for the processor
-	vocab_expansion     = _get_option( "vocab_expansion", "true", False)
-
-	processor = pyMicrodata(base = base, vocab_expansion = vocab_expansion, vocab_cache = vocab_cache)
+	processor = pyMicrodata(base = base)
 
 	# Decide the output format; the issue is what should happen in case of a top level error like an inaccessibility of
 	# the html source: should a graph be returned or an HTML page with an error message?
