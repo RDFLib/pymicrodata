@@ -10,7 +10,7 @@ sys.path.insert(0,"/Users/ivan/Library/Python")
 # You may want to adapt this to your environment...
 import sys, getopt, platform
 
-from pyMicrodata import pyMicrodata
+from pyMicrodata import pyMicrodata, __version__
 		
 ###########################################	
 
@@ -23,6 +23,7 @@ where:
   -n: output format N Triples
   -p: output format pretty RDF/XML
   -b: give the base URI; if a file name is given, this can be left empty and the file name is used
+  -v: print the converter version number and quit
 
 'Filename' can be a local file name or a URI. In case there is no filename, stdin is used.
 
@@ -47,6 +48,9 @@ try :
 			format = "pretty-xml"
 		elif o == "-b" :
 			base = a
+		elif o == "-v" :
+			print "pyMicrodata version %s" % __version__
+			sys.exit(0)
 		else :
 			usage()
 			sys.exit(1)
