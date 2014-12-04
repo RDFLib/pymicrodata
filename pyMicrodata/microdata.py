@@ -131,8 +131,6 @@ class Microdata :
 		@param base: the base URI of the Dom tree, either set from the outside or via a @base element
 		"""
 		self.document = document
-		
-		#-----------------------------------------------------------------
 		# set the document base, will be used to generate top level URIs
 		self.base = None
 		# handle the base element case for HTML
@@ -168,8 +166,7 @@ class Microdata :
 	# todo: We need a copy of this using @itemprop-reverse instead of @itemprop to collect the inverse properties, yielding "get_item_inverse_properties()"
 	def get_item_properties(self, item) :
 		"""
-		Collect the item's properties, ie, all DOM descendant nodes with @itemprop until the subtree hits another
-		@itemscope. @itemrefs are also added at this point.
+		Collect the item's properties, ie, all DOM descendant nodes with @itemprop until the subtree hits another @itemscope. @itemrefs are also added at this point.
 		
 		@param item: current item
 		@type item: DOM Node
@@ -304,12 +301,6 @@ class MicrodataConversion(Microdata) :
 		# Step 1,2: if the subject has to be set, store it in memory
 		subject = context.get_memory(item)
 
-		if debug :
-			print subject
-			print context
-			print subject is None
-
-
 		if subject is None :
 			# nop, there is no subject set. If there is a valid @itemid, that carries it
 			if item.hasAttribute("itemid") and is_absolute_URI(item.getAttribute("itemid")):
@@ -359,7 +350,7 @@ class MicrodataConversion(Microdata) :
 					vocab = itype
 					if vocab[-1] != '/' : vocab += '/'
 				else :
-					vocab = itype.rsplit('/',1)[0] + '/'
+					vocab = itype.rsplit('/', 1)[0] + '/'
 		
 		# Step 8: update vocab in the context
 		if vocab is not None :

@@ -59,8 +59,8 @@
 <a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
 <a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
 <a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
-<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring">Hardcoded version of the current microdata-&gt;RDF registry. There is also a local registry to include some test cases.</tt> </tt>
-<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">Finally, there is a local dictionary for prefix mapping for the registry items; these are the preferred prefixes</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring">Hardcoded version of the current microdata-&gt;RDF registry.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">There is also a local dictionary for prefix mapping for the registry items; these are the preferred prefixes</tt> </tt>
 <a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">for those vocabularies, and are used to make the output nicer.</tt> </tt>
 <a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
 <a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-docstring">@organization: U{World Wide Web Consortium&lt;http://www.w3.org&gt;}</tt> </tt>
@@ -70,8 +70,8 @@
 <a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
 <a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
 <a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
-<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-string">$Id: registry.py,v 1.4 2012/03/26 13:18:31 ivan Exp $</tt> </tt>
-<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-string">$Date: 2012/03/26 13:18:31 $</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-string">$Id: registry.py,v 1.6 2012-12-01 22:46:57 ivan Exp $</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-string">$Date: 2012-12-01 22:46:57 $</tt> </tt>
 <a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
 <a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"> </tt>
 <a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt> </tt>
@@ -82,86 +82,41 @@ pyMicrodata.utils.py_v_micro" class="py-name" href="#" onclick="return doclink('
 pyMicrodata.utils.py_v_final" class="py-name" href="#" onclick="return doclink('link-3', 'py_v_final', 'link-3');">py_v_final</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Variable pyMicrodata.registry.py_v_serial=pyMicrodata.registry-module.html#py_v_serial,Variable pyMicrodata.utils.py_v_serial=pyMicrodata.utils-module.html#py_v_serial"><a title="pyMicrodata.registry.py_v_serial
 pyMicrodata.utils.py_v_serial" class="py-name" href="#" onclick="return doclink('link-4', 'py_v_serial', 'link-4');">py_v_serial</a></tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">version_info</tt> </tt>
 <a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"> </tt>
-<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable pyMicrodata.registry._registry=pyMicrodata.registry-module.html#_registry"><a title="pyMicrodata.registry._registry" class="py-name" href="#" onclick="return doclink('link-5', '_registry', 'link-5');">_registry</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
-<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-string">{</tt> </tt>
-<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-string">  "http://schema.org/": {</tt> </tt>
-<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-string">    "propertyURI":    "vocabulary",</tt> </tt>
-<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-string">    "multipleValues": "unordered",</tt> </tt>
-<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-string">    "properties": {</tt> </tt>
-<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-string">      "blogPosts"          : {"multipleValues": "list"},</tt> </tt>
-<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-string">      "breadcrumb"         : {"multipleValues": "list"},</tt> </tt>
-<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-string">      "byArtist"           : {"multipleValues": "list"},</tt> </tt>
-<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-string">      "creator"            : {"multipleValues": "list"},</tt> </tt>
-<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-string">      "episodes"           : {"multipleValues": "list"},</tt> </tt>
-<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-string">      "events"             : {"multipleValues": "list"},</tt> </tt>
-<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-string">      "founders"           : {"multipleValues": "list"},</tt> </tt>
-<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-string">      "itemListElement"    : {"multipleValues": "list"},</tt> </tt>
-<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-string">      "musicGroupMember"   : {"multipleValues": "list"},</tt> </tt>
-<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-string">      "performerIn"        : {"multipleValues": "list"},</tt> </tt>
-<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-string">      "performers"         : {"multipleValues": "list"},</tt> </tt>
-<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-string">      "producer"           : {"multipleValues": "list"},</tt> </tt>
-<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-string">      "recipeInstructions" : {"multipleValues": "list"},</tt> </tt>
-<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-string">      "seasons"            : {"multipleValues": "list"},</tt> </tt>
-<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"><tt class="py-string">      "subEvents"          : {"multipleValues": "list"},</tt> </tt>
-<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-string">      "tracks"             : {"multipleValues": "list"},</tt> </tt>
-<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-string">            "additionalType"     : {"subPropertyOf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"}</tt> </tt>
-<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-string">    }</tt> </tt>
-<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-string">  },</tt> </tt>
-<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-string">  "http://xmlns.com/foaf/0.1/": {</tt> </tt>
-<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-string">    "propertyURI"    : "vocabulary",</tt> </tt>
-<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-string">    "multipleValues" : "unordered"</tt> </tt>
-<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-string">  },</tt> </tt>
-<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt class="py-string">  "http://microformats.org/profile/hcard": {</tt> </tt>
-<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt class="py-string">    "propertyURI"    : "vocabulary",</tt> </tt>
-<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"><tt class="py-string">    "multipleValues" : "unordered"</tt> </tt>
-<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"><tt class="py-string">  },</tt> </tt>
-<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"><tt class="py-string">  "http://microformats.org/profile/hcalendar#": {</tt> </tt>
-<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"><tt class="py-string">    "propertyURI"    : "vocabulary",</tt> </tt>
-<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"><tt class="py-string">    "multipleValues" : "unordered",</tt> </tt>
-<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"><tt class="py-string">    "properties": {</tt> </tt>
-<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"><tt class="py-string">      "categories": {"multipleValues": "list"}</tt> </tt>
-<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"><tt class="py-string">    }</tt> </tt>
-<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"><tt class="py-string">  }</tt> </tt>
-<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"><tt class="py-string">}</tt> </tt>
-<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
-<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"> </tt>
-<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable pyMicrodata.registry.vocab_names=pyMicrodata.registry-module.html#vocab_names"><a title="pyMicrodata.registry.vocab_names" class="py-name" href="#" onclick="return doclink('link-6', 'vocab_names', 'link-6');">vocab_names</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
-<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-string">"http://schema.org/"</tt>                         <tt class="py-op">:</tt> <tt class="py-string">"schema"</tt><tt class="py-op">,</tt> </tt>
-<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-string">"http://xmlns.com/foaf/0.1/"</tt>                                   <tt class="py-op">:</tt> <tt class="py-string">"foaf"</tt><tt class="py-op">,</tt> </tt>
-<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">        <tt class="py-string">"http://microformats.org/profile/hcard#"</tt>     <tt class="py-op">:</tt> <tt class="py-string">"hcard"</tt><tt class="py-op">,</tt> </tt>
-<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-string">"http://microformats.org/profile/hcalendar#"</tt> <tt class="py-op">:</tt> <tt class="py-string">"hcalendar"</tt> </tt>
-<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line"><tt class="py-op">}</tt> </tt>
-<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"> </tt>
-<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"><tt class="py-comment"># This is the local version, added mainly for testing</tt> </tt>
-<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable pyMicrodata.registry._myRegistry=pyMicrodata.registry-module.html#_myRegistry"><a title="pyMicrodata.registry._myRegistry" class="py-name" href="#" onclick="return doclink('link-7', '_myRegistry', 'link-7');">_myRegistry</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
-<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line"><tt class="py-string">{</tt> </tt>
-<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"><tt class="py-string">  "http://n.whatwg.org/work": {</tt> </tt>
-<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line"><tt class="py-string">    "propertyURI"    : "contextual",</tt> </tt>
-<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line"><tt class="py-string">    "multipleValues" : "list"</tt> </tt>
-<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line"><tt class="py-string">  } </tt> </tt>
-<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line"><tt class="py-string">}</tt> </tt>
-<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
-<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line"> </tt>
-<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Module pyMicrodata.registry=pyMicrodata.registry-module.html,Variable pyMicrodata.registry.registry=pyMicrodata.registry-module.html#registry"><a title="pyMicrodata.registry
-pyMicrodata.registry.registry" class="py-name" href="#" onclick="return doclink('link-8', 'registry', 'link-8');">registry</a></tt>   <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
-<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line"><tt id="link-9" class="py-name" targets="Variable pyMicrodata.registry.myRegistry=pyMicrodata.registry-module.html#myRegistry"><a title="pyMicrodata.registry.myRegistry" class="py-name" href="#" onclick="return doclink('link-9', 'myRegistry', 'link-9');">myRegistry</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
-<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt id="link-10" class="py-name"><a title="pyMicrodata.registry.py_v_major
-pyMicrodata.utils.py_v_major" class="py-name" href="#" onclick="return doclink('link-10', 'py_v_major', 'link-0');">py_v_major</a></tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">3</tt> <tt class="py-keyword">or</tt> <tt class="py-op">(</tt><tt id="link-11" class="py-name"><a title="pyMicrodata.registry.py_v_major
-pyMicrodata.utils.py_v_major" class="py-name" href="#" onclick="return doclink('link-11', 'py_v_major', 'link-0');">py_v_major</a></tt> <tt class="py-op">==</tt> <tt class="py-number">2</tt> <tt class="py-keyword">and</tt> <tt id="link-12" class="py-name"><a title="pyMicrodata.registry.py_v_minor
-pyMicrodata.utils.py_v_minor" class="py-name" href="#" onclick="return doclink('link-12', 'py_v_minor', 'link-1');">py_v_minor</a></tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">6</tt><tt class="py-op">)</tt> <tt class="py-op">:</tt> </tt>
-<a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line">        <tt class="py-keyword">import</tt> <tt class="py-name">json</tt> </tt>
-<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line">        <tt id="link-13" class="py-name"><a title="pyMicrodata.registry
-pyMicrodata.registry.registry" class="py-name" href="#" onclick="return doclink('link-13', 'registry', 'link-8');">registry</a></tt>   <tt class="py-op">=</tt> <tt class="py-name">json</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt id="link-14" class="py-name"><a title="pyMicrodata.registry._registry" class="py-name" href="#" onclick="return doclink('link-14', '_registry', 'link-5');">_registry</a></tt><tt class="py-op">)</tt> </tt>
-<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line">        <tt id="link-15" class="py-name"><a title="pyMicrodata.registry.myRegistry" class="py-name" href="#" onclick="return doclink('link-15', 'myRegistry', 'link-9');">myRegistry</a></tt> <tt class="py-op">=</tt> <tt class="py-name">json</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt id="link-16" class="py-name"><a title="pyMicrodata.registry._myRegistry" class="py-name" href="#" onclick="return doclink('link-16', '_myRegistry', 'link-7');">_myRegistry</a></tt><tt class="py-op">)</tt> </tt>
-<a name="L88"></a><tt class="py-lineno">88</tt>  <tt class="py-line"><tt class="py-keyword">else</tt> <tt class="py-op">:</tt> </tt>
-<a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line">        <tt class="py-keyword">import</tt> <tt class="py-name">simplejson</tt> </tt>
-<a name="L90"></a><tt class="py-lineno">90</tt>  <tt class="py-line">        <tt id="link-17" class="py-name"><a title="pyMicrodata.registry
-pyMicrodata.registry.registry" class="py-name" href="#" onclick="return doclink('link-17', 'registry', 'link-8');">registry</a></tt>   <tt class="py-op">=</tt> <tt class="py-name">simplejson</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="pyMicrodata.registry._registry" class="py-name" href="#" onclick="return doclink('link-18', '_registry', 'link-5');">_registry</a></tt><tt class="py-op">)</tt> </tt>
-<a name="L91"></a><tt class="py-lineno">91</tt>  <tt class="py-line">        <tt id="link-19" class="py-name"><a title="pyMicrodata.registry.myRegistry" class="py-name" href="#" onclick="return doclink('link-19', 'myRegistry', 'link-9');">myRegistry</a></tt> <tt class="py-op">=</tt> <tt class="py-name">simplejson</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt id="link-20" class="py-name"><a title="pyMicrodata.registry._myRegistry" class="py-name" href="#" onclick="return doclink('link-20', '_myRegistry', 'link-7');">_myRegistry</a></tt><tt class="py-op">)</tt> </tt>
-<a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line"> </tt>
-<a name="L93"></a><tt class="py-lineno">93</tt>  <tt class="py-line"><tt class="py-keyword">for</tt> <tt class="py-op">(</tt><tt id="link-21" class="py-name" targets="Variable pyMicrodata.registry.k=pyMicrodata.registry-module.html#k"><a title="pyMicrodata.registry.k" class="py-name" href="#" onclick="return doclink('link-21', 'k', 'link-21');">k</a></tt><tt class="py-op">,</tt><tt id="link-22" class="py-name" targets="Variable pyMicrodata.registry.v=pyMicrodata.registry-module.html#v"><a title="pyMicrodata.registry.v" class="py-name" href="#" onclick="return doclink('link-22', 'v', 'link-22');">v</a></tt><tt class="py-op">)</tt> <tt class="py-keyword">in</tt> <tt id="link-23" class="py-name" targets="Variable pyMicrodata.microdata.ValueMethod.list=pyMicrodata.microdata.ValueMethod-class.html#list"><a title="pyMicrodata.microdata.ValueMethod.list" class="py-name" href="#" onclick="return doclink('link-23', 'list', 'link-23');">list</a></tt><tt class="py-op">(</tt><tt id="link-24" class="py-name"><a title="pyMicrodata.registry.myRegistry" class="py-name" href="#" onclick="return doclink('link-24', 'myRegistry', 'link-9');">myRegistry</a></tt><tt class="py-op">.</tt><tt class="py-name">items</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">:</tt> <tt id="link-25" class="py-name"><a title="pyMicrodata.registry
-pyMicrodata.registry.registry" class="py-name" href="#" onclick="return doclink('link-25', 'registry', 'link-8');">registry</a></tt><tt class="py-op">[</tt><tt id="link-26" class="py-name"><a title="pyMicrodata.registry.k" class="py-name" href="#" onclick="return doclink('link-26', 'k', 'link-21');">k</a></tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="pyMicrodata.registry.v" class="py-name" href="#" onclick="return doclink('link-27', 'v', 'link-22');">v</a></tt> </tt>
-<a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-comment"># To be added soon:</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">      <tt class="py-comment"># "Class"              : {"subPropertyOf" : "http://www.w3.org/2000/01/rdf-schema#Class"},</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">      <tt class="py-comment"># "Property"           : {"subPropertyOf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"}</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable pyMicrodata.registry._registry=pyMicrodata.registry-module.html#_registry"><a title="pyMicrodata.registry._registry" class="py-name" href="#" onclick="return doclink('link-5', '_registry', 'link-5');">_registry</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-string">{</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-string">  "http://schema.org/": {</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-string">    "properties": {</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-string">      "additionalType": {"subPropertyOf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"}</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-string">    }</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-string">  },</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-string">  </tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-string">  "http://microformats.org/profile/hcard": {}</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-string">}</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable pyMicrodata.registry.vocab_names=pyMicrodata.registry-module.html#vocab_names"><a title="pyMicrodata.registry.vocab_names" class="py-name" href="#" onclick="return doclink('link-6', 'vocab_names', 'link-6');">vocab_names</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt class="py-string">"http://schema.org/"</tt>                         <tt class="py-op">:</tt> <tt class="py-string">"schema"</tt><tt class="py-op">,</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-string">"http://microformats.org/profile/hcard#"</tt>     <tt class="py-op">:</tt> <tt class="py-string">"hcard"</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-op">}</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Module pyMicrodata.registry=pyMicrodata.registry-module.html,Variable pyMicrodata.registry.registry=pyMicrodata.registry-module.html#registry"><a title="pyMicrodata.registry
+pyMicrodata.registry.registry" class="py-name" href="#" onclick="return doclink('link-7', 'registry', 'link-7');">registry</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt id="link-8" class="py-name"><a title="pyMicrodata.registry.py_v_major
+pyMicrodata.utils.py_v_major" class="py-name" href="#" onclick="return doclink('link-8', 'py_v_major', 'link-0');">py_v_major</a></tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">3</tt> <tt class="py-keyword">or</tt> <tt class="py-op">(</tt><tt id="link-9" class="py-name"><a title="pyMicrodata.registry.py_v_major
+pyMicrodata.utils.py_v_major" class="py-name" href="#" onclick="return doclink('link-9', 'py_v_major', 'link-0');">py_v_major</a></tt> <tt class="py-op">==</tt> <tt class="py-number">2</tt> <tt class="py-keyword">and</tt> <tt id="link-10" class="py-name"><a title="pyMicrodata.registry.py_v_minor
+pyMicrodata.utils.py_v_minor" class="py-name" href="#" onclick="return doclink('link-10', 'py_v_minor', 'link-1');">py_v_minor</a></tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">6</tt><tt class="py-op">)</tt> <tt class="py-op">:</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">        <tt class="py-keyword">import</tt> <tt class="py-name">json</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt id="link-11" class="py-name"><a title="pyMicrodata.registry
+pyMicrodata.registry.registry" class="py-name" href="#" onclick="return doclink('link-11', 'registry', 'link-7');">registry</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">json</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt id="link-12" class="py-name"><a title="pyMicrodata.registry._registry" class="py-name" href="#" onclick="return doclink('link-12', '_registry', 'link-5');">_registry</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-keyword">else</tt> <tt class="py-op">:</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-keyword">import</tt> <tt class="py-name">simplejson</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt id="link-13" class="py-name"><a title="pyMicrodata.registry
+pyMicrodata.registry.registry" class="py-name" href="#" onclick="return doclink('link-13', 'registry', 'link-7');">registry</a></tt>  <tt class="py-op">=</tt> <tt class="py-name">simplejson</tt><tt class="py-op">.</tt><tt class="py-name">loads</tt><tt class="py-op">(</tt><tt id="link-14" class="py-name"><a title="pyMicrodata.registry._registry" class="py-name" href="#" onclick="return doclink('link-14', '_registry', 'link-5');">_registry</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -194,7 +149,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Sep  5 18:39:47 2012
+    Generated by Epydoc 3.0.1 on Thu Dec  4 15:49:55 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

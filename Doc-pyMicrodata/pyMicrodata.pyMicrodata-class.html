@@ -82,9 +82,7 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="pyMicrodata.pyMicrodata-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">base</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">vocab_expansion</span>=<span class="summary-sig-default">False</span>,
-        <span class="summary-sig-arg">vocab_cache</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">base</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="pyMicrodata-pysrc.html#pyMicrodata.__init__">source&nbsp;code</a></span>
             
@@ -181,7 +179,7 @@
         <tr>
           <td><span class="summary-sig"><a href="pyMicrodata.pyMicrodata-class.html#rdf_from_sources" class="summary-sig-name">rdf_from_sources</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">names</span>,
-        <span class="summary-sig-arg">outputFormat</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">pretty-xml</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">outputFormat</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">turtle</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">rdfOutput</span>=<span class="summary-sig-default">False</span>)</span><br />
       Extract and RDF graph from a list of RDFa sources and serialize them 
       in one graph.</td>
@@ -202,7 +200,7 @@
         <tr>
           <td><span class="summary-sig"><a href="pyMicrodata.pyMicrodata-class.html#rdf_from_source" class="summary-sig-name">rdf_from_source</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">name</span>,
-        <span class="summary-sig-arg">outputFormat</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">pretty-xml</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">outputFormat</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">turtle</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">rdfOutput</span>=<span class="summary-sig-default">False</span>)</span><br />
       Extract and RDF graph from an RDFa source and serialize it in one 
       graph.</td>
@@ -276,9 +274,7 @@
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">base</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">vocab_expansion</span>=<span class="sig-default">False</span>,
-        <span class="sig-arg">vocab_cache</span>=<span class="sig-default">True</span>)</span>
+        <span class="sig-arg">base</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -292,9 +288,6 @@
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>base</code></strong> - URI for the default &quot;base&quot; value (usually the URI of 
           the file to be processed)</li>
-        <li><strong class="pname"><code>vocab_expansion</code></strong> (Boolean) - whether vocab expansion should be performed or not</li>
-        <li><strong class="pname"><code>vocab_cache</code></strong> (Boolean) - if vocabulary expansion is done, then perform caching of the 
-          vocabulary data</li>
     </ul></dd>
   </dl>
 </td></tr></table>
@@ -342,7 +335,7 @@
   <p>Trying to guess whether &quot;name&quot; is a URI, a string; it then 
   tries to open these as such accordingly, returning a file-like object. If
   name is a plain string then it returns the input argument (that should 
-  be, supposidly, a file-like object already)</p>
+  be, supposedly, a file-like object already)</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
@@ -424,7 +417,7 @@
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">rdf_from_sources</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">names</span>,
-        <span class="sig-arg">outputFormat</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">pretty-xml</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">outputFormat</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">turtle</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">rdfOutput</span>=<span class="sig-default">False</span>)</span>
   </h3>
   </td><td align="right" valign="top"
@@ -459,7 +452,7 @@
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">rdf_from_source</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">name</span>,
-        <span class="sig-arg">outputFormat</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">pretty-xml</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">outputFormat</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">turtle</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">rdfOutput</span>=<span class="sig-default">False</span>)</span>
   </h3>
   </td><td align="right" valign="top"
@@ -542,7 +535,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Sep  5 18:39:47 2012
+    Generated by Epydoc 3.0.1 on Thu Dec  4 15:49:55 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

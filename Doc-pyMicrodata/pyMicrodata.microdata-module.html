@@ -96,21 +96,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="pyMicrodata.microdata.PropertySchemes-class.html" class="summary-name">PropertySchemes</a>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="pyMicrodata.microdata.ValueMethod-class.html" class="summary-name">ValueMethod</a>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="pyMicrodata.microdata.Evaluation_Context-class.html" class="summary-name">Evaluation_Context</a><br />
+        <a href="pyMicrodata.microdata.EvaluationContext-class.html" class="summary-name">EvaluationContext</a><br />
       Evaluation context structure.
     </td>
   </tr>
@@ -120,9 +106,8 @@
     </td><td class="summary">
         <a href="pyMicrodata.microdata.Microdata-class.html" class="summary-name">Microdata</a><br />
       This class encapsulates methods that are defined by the <a 
-        href="http://dev.w3.org/html5/md/Overview.html" 
-        target="_top">microdata spec</a>, as opposed to the RDF conversion 
-        note.
+        href="http://www.w3.org/TR/microdata/" target="_top">microdata 
+        spec</a>, as opposed to the RDF conversion note.
     </td>
   </tr>
 <tr>
@@ -157,20 +142,6 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="ns_owl"></a><span class="summary-name">ns_owl</span> = <code title="Namespace(u'http://www.w3.org/2002/07/owl#')">Namespace(u'http://www.w3.org/2002/07/owl#')</code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="MD_VOCAB"></a><span class="summary-name">MD_VOCAB</span> = <code title="'http://www.w3.org/ns/md#'"><code class="variable-quote">'</code><code class="variable-string">http://www.w3.org/ns/md#</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="pyMicrodata.microdata-module.html#RDFA_VOCAB" class="summary-name">RDFA_VOCAB</a> = <code title="rdflib.term.URIRef(u'http://www.w3.org/ns/rdfa#usesVocabulary')">rdflib.term.URIRef(u'http://www.w3.org/ns/rdfa#us<code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr>
@@ -227,12 +198,10 @@
   <span title="rdflib.Literal">Literal</span>,
   <span title="rdflib.BNode">BNode</span>,
   <span title="rdflib.Namespace">Namespace</span>,
-  <span title="rdflib.Graph.Graph">Graph</span>,
-  <span title="rdflib.RDFS.RDFSNS">ns_rdfs</span>,
   <span title="rdflib.RDF.RDFNS">ns_rdf</span>,
+  <span title="rdflib.Literal._XSD_NS">ns_xsd</span>,
   <span title="pyMicrodata.registry.registry">registry</span>,
   <span title="pyMicrodata.registry.vocab_names">vocab_names</span>,
-  <a href="pyMicrodata.utils-module.html#generate_RDF_collection" title="pyMicrodata.utils.generate_RDF_collection">generate_RDF_collection</a>,
   <a href="pyMicrodata.utils-module.html#get_Literal" title="pyMicrodata.utils.get_Literal">get_Literal</a>,
   <a href="pyMicrodata.utils-module.html#get_time_type" title="pyMicrodata.utils.get_time_type">get_time_type</a>,
   <a href="pyMicrodata.utils-module.html#get_lang_from_hierarchy" title="pyMicrodata.utils.get_lang_from_hierarchy">get_lang_from_hierarchy</a>,
@@ -241,43 +210,6 @@
   <a href="pyMicrodata.utils-module.html#fragment_escape" title="pyMicrodata.utils.fragment_escape">fragment_escape</a>,
   <span title="pyMicrodata.debug">debug</span>
 </p><br />
-<!-- ==================== VARIABLES DETAILS ==================== -->
-<a name="section-VariablesDetails"></a>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Variables Details</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-VariablesDetails"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-<a name="RDFA_VOCAB"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">RDFA_VOCAB</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-rdflib.term.URIRef(u'http://www.w3.org/ns/rdfa#usesVocabulary')
-</pre></td></tr></table>
-</dd>
-  </dl>
-</td></tr></table>
-</div>
-<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -304,7 +236,7 @@ rdflib.term.URIRef(u'http://www.w3.org/ns/rdfa#usesVocabulary')
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Sep  5 18:39:46 2012
+    Generated by Epydoc 3.0.1 on Thu Dec  4 15:49:55 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
