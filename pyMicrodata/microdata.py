@@ -264,19 +264,22 @@ class MicrodataConversion(Microdata) :
 					
 		# Add the prefixes defined in the RDFa initial context to improve the outlook of the output
 		# I put this into a try: except: in case the pyRdfa package is not available...
-		try :
+		# This is put in a debug branch; in general, the RDFLib Turtle serializer adds all the
+		# namespace declarations, which can be a bit of a problem for reading the results...
+		if not debug :
 			try :
-				from ..pyRdfa.initialcontext import initial_context
+				try :
+					from ..pyRdfa.initialcontext import initial_context
+				except :
+					from pyRdfa.initialcontext import initial_context
+				vocabs = initial_context["http://www.w3.org/2011/rdfa-context/rdfa-1.1"].ns
+				for prefix in list(vocabs.keys()) :
+					uri = vocabs[prefix]
+					if uri not in registry :
+						# if it is in the registry, then it may have needed some special microdata massage...
+						self.graph.bind(prefix,uri)
 			except :
-				from pyRdfa.initialcontext import initial_context
-			vocabs = initial_context["http://www.w3.org/2011/rdfa-context/rdfa-1.1"].ns
-			for prefix in list(vocabs.keys()) :
-				uri = vocabs[prefix]
-				if uri not in registry :
-					# if it is in the registry, then it may have needed some special microdata massage...
-					self.graph.bind(prefix,uri)
-		except :
-			pass
+				pass
 		
 	def convert(self) :
 		"""

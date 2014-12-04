@@ -21,6 +21,11 @@ test_ttl  = test_file_base + ".ttl"
 processor = pyMicrodata()
 print processor.rdf_from_source(test_html)
 print "----"
+with open(test_html) as f :
+	for l in f:
+		print l
+
+print "----"
 with open(test_ttl) as f :
 	for l in f:
 		print l

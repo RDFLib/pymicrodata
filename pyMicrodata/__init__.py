@@ -59,7 +59,6 @@ else :
 	from StringIO import StringIO
 
 import datetime
-import os
 
 import rdflib
 from rdflib	import URIRef
@@ -70,10 +69,8 @@ from rdflib	import Namespace
 if rdflib.__version__ >= "3.0.0" :
 	from rdflib	import Graph
 	from rdflib	import RDF  as ns_rdf
-	from rdflib	import RDFS as ns_rdfs
 else :
 	from rdflib.Graph   import Graph
-	from rdflib.RDFS	import RDFSNS as ns_rdfs
 	from rdflib.RDF		import RDFNS  as ns_rdf
 
 if PY3 :
@@ -81,7 +78,7 @@ if PY3 :
 else :
 	from urlparse import urlparse
 
-debug = False
+debug = True
 
 from .utils     import URIOpener
 from .microdata	import MicrodataConversion
@@ -280,7 +277,7 @@ class pyMicrodata :
 			if not rdfOutput : raise e
 			return self._generate_error_graph(graph, str(e), uri=name)
 	
-	def rdf_from_sources(self, names, outputFormat = "pretty-xml", rdfOutput = False) :
+	def rdf_from_sources(self, names, outputFormat = "turtle", rdfOutput = False) :
 		"""
 		Extract and RDF graph from a list of RDFa sources and serialize them in one graph. The sources are parsed, the RDF
 		extracted, and serialization is done in the specified format.
@@ -303,7 +300,7 @@ class pyMicrodata :
 			self.graph_from_source(name, graph, rdfOutput)
 		return graph.serialize(format=outputFormat)
 
-	def rdf_from_source(self, name, outputFormat = "pretty-xml", rdfOutput = False) :
+	def rdf_from_source(self, name, outputFormat = "turtle", rdfOutput = False) :
 		"""
 		Extract and RDF graph from an RDFa source and serialize it in one graph. The source is parsed, the RDF
 		extracted, and serialization is done in the specified format.
