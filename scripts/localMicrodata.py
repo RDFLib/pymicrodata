@@ -4,18 +4,17 @@ Run the microdata extraction package locally
 """
 
 import sys
-
 sys.path.insert(0,"/Users/ivan/Library/Python")
 
 # You may want to adapt this to your environment...
-import sys, getopt, platform
+import sys, getopt
 
 from pyMicrodata import pyMicrodata, __version__
 		
 ###########################################	
 
 
-usageText="""Usage: %s -[xtjnpb:] [filename[s]]
+usageText="""Usage: %s -[xtjnpvb:] [filename[s]]
 where:
   -x: output format RDF/XML
   -t: output format Turtle (default)
@@ -34,9 +33,10 @@ def usage() :
 
 format = "turtle"
 base   = ""
+version_only = False
 
 try :
-	opts, value = getopt.getopt(sys.argv[1:],"xtjnpb:")
+	opts, value = getopt.getopt(sys.argv[1:],"vxtjnpb:")
 	for o,a in opts:
 		if o == "-t" :
 			format = "turtle"
@@ -49,14 +49,17 @@ try :
 		elif o == "-b" :
 			base = a
 		elif o == "-v" :
-			print "pyMicrodata version %s" % __version__
-			sys.exit(0)
+			version_only = True
 		else :
 			usage()
 			sys.exit(1)
 except :
 	usage()
 	sys.exit(1)
+
+if version_only :
+	print "pyMicrodata version: %s" % __version__
+	sys.exit(0)
 
 processor = pyMicrodata(base)
 if len(value) >= 1 :
