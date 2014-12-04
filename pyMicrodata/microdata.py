@@ -239,8 +239,9 @@ class MicrodataConversion(Microdata) :
 	@ivar graph: an RDF graph; an RDFLib Graph
 	@type graph: RDFLib Graph
 	@ivar document: top of the DOM tree, as returned by the HTML5 parser
-	@ivar ns_md: the Namespace for the microdata vocabulary
 	@ivar base: the base of the Dom tree, either set from the outside or via a @base element
+	@ivar subs: dictionary mapping predicates to possible superproperties
+	@ivar bnodes: dictionary mapping items to bnodes (to be used when an item is the target of an @itemref)
 	"""
 	def __init__(self, document, graph, base = None) :
 		"""
@@ -250,8 +251,9 @@ class MicrodataConversion(Microdata) :
 		@keyword base: the base of the Dom tree, either set from the outside or via a @base element
 		"""
 		Microdata.__init__(self, document, base)
-		self.graph = graph
-		self.subs  = {}
+		self.graph  = graph
+		self.subs   = {}
+		self.bnodes = {}
 
 		# Get the vocabularies defined in the registry bound to proper names, if any...
 		for vocab in registry :
@@ -300,14 +302,25 @@ class MicrodataConversion(Microdata) :
 		@return: a URIRef or a BNode for the (RDF) subject
 		"""
 		# Step 1,2: if the subject has to be set, store it in memory
-		subject = context.get_memory( item )
+		subject = context.get_memory(item)
+
+		if debug :
+			print subject
+			print context
+			print subject is None
+
+
 		if subject is None :
 			# nop, there is no subject set. If there is a valid @itemid, that carries it
 			if item.hasAttribute("itemid") and is_absolute_URI(item.getAttribute("itemid")):
 				subject = URIRef(item.getAttribute("itemid").strip())
 			else :
-				subject = BNode()
-			context.set_memory( item, subject )
+				if item in self.bnodes :
+					subject = self.bnodes[item]
+				else :
+					subject = BNode()
+					self.bnodes[item] = subject
+			context.set_memory(item,subject)
 			
 		# Step 3: set the type triples if any
 		types = []
@@ -402,8 +415,6 @@ class MicrodataConversion(Microdata) :
 				else :
 					self.subs[name] = [URIRef(subpr)]
 
-		if debug: print( "name: %s, %s" % (name,context) )
-		
 		# Step 1: absolute URI-s are fine, take them as they are
 		if is_absolute_URI(name) : return name
 		
