@@ -78,7 +78,7 @@ if PY3 :
 else :
 	from urlparse import urlparse
 
-debug = True
+debug = False
 
 from .utils     import URIOpener
 from .microdata	import MicrodataConversion
