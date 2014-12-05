@@ -163,7 +163,6 @@ class Microdata :
 				
 		return collect_items(self.document)
 
-	# todo: We need a copy of this using @itemprop-reverse instead of @itemprop to collect the inverse properties, yielding "get_item_inverse_properties()"
 	def get_item_properties(self, item) :
 		"""
 		Collect the item's properties, ie, all DOM descendant nodes with @itemprop until the subtree hits another @itemscope. @itemrefs are also added at this point.
@@ -201,6 +200,8 @@ class Microdata :
 				pending = [child for child in current.childNodes if child.nodeType == child.ELEMENT_NODE] + pending
 
 			if current.hasAttribute("itemprop") and current.getAttribute("itemprop").strip() != "" :
+				results.append(current)
+			elif current.hasAttribute("itemprop-reverse") and current.getAttribute("itemprop-reverse").strip() != "" :
 				results.append(current)
 				
 		return results
@@ -298,6 +299,33 @@ class MicrodataConversion(Microdata) :
 		@type context: L{EvaluationContext}
 		@return: a URIRef or a BNode for the (RDF) subject
 		"""
+		def _get_predicate_object(prop, name, item_type) :
+			"""
+			Generate the predicate and the object for an item that contains either "itemprop" or "itemprop-reverse".
+			Steps 9.1.1 to 9.1.3 of the processing steps
+
+			@param prop: the item that should produce a predicate
+			@type prop: a DOM Node for an element
+			@param name: an itemprop or itemprop-reverse item
+			@type name: string
+			@param item_type: the type of the item; necessary for the creation of a new context
+			@type item_type: a string with the absolute URI of the type
+			@return: a tuple consisting of the predicate (URI) and the object for the triple to be generated
+			"""
+			# 9.1.1. set a new context
+			new_context = context.new_copy(item_type)
+			# 9.1.2, generate the URI for the property name, that will be the predicate
+			# Also update the context
+			# Note that the method also checks, and stores, the possible superproperty/equivalent property values
+			new_context.current_name = predicate = self.generate_predicate_URI(name, new_context)
+			# 9.1.3, generate the property value. The extra flag signals that the value is a new item
+			# Note that 9.1.4 step is done in the method itself, ie, a recursion may occur there
+			# if a new item is hit (in which case the return value is a RDF resource chaining to a subject)
+			# Note that the value may be None (e.g, for an <img> element without a @src), in which case nothing
+			# is generated
+			value  = self.get_property_value(prop, new_context)
+			return (predicate, value)
+
 		# Step 1,2: if the subject has to be set, store it in memory
 		subject = context.get_memory(item)
 
@@ -358,29 +386,12 @@ class MicrodataConversion(Microdata) :
 		elif item.hasAttribute("itemtype") :
 			context.current_vocabulary = None
 
-		# todo: what follows has to be duplicated with the get_item_inverse_properties and the corresponding changes
-		# but... what if the target/object is a literal? That must be filtered out...
-
-		def get_predicate_object(prop, name) :
-			# 9.1.1. set a new context
-			new_context = context.new_copy(itype)
-			# 9.1.2, generate the URI for the property name, that will be the predicate
-			# Also update the context
-			# Note that the method also checks, and stores, the possible superproperty/equivalent property values
-			new_context.current_name = predicate = self.generate_predicate_URI(name, new_context)
-			# 9.1.3, generate the property value. The extra flag signals that the value is a new item
-			# Note that 9.1.4 step is done in the method itself, ie, a recursion may occur there
-			# if a new item is hit (in which case the return value is a RDF resource chaining to a subject)
-			# Note that the value may be None (e.g, for an <img> element without a @src), in which case nothing
-			# is generated
-			value  = self.get_property_value(prop, new_context)
-			return (predicate, value)
-
 		# Step 9: Get the item properties and run a cycle on those
 		# each entry in the dictionary is an array of RDF objects
 		for prop in self.get_item_properties(item) :
 			for name in prop.getAttribute("itemprop").strip().split() :
-				(predicate, value) = get_predicate_object(prop, name)
+				# Steps 9.1.1 to 9.1.3 are done in a separate function
+				(predicate, value) = _get_predicate_object(prop, name, itype)
 				if value is None : continue
 				# 9.1.5, generate the triple
 				self.graph.add((subject, URIRef(predicate), value))
@@ -388,6 +399,21 @@ class MicrodataConversion(Microdata) :
 				if name in self.subs and self.subs[name] is not None :
 					for sup in self.subs[name] :
 						self.graph.add((subject, sup, value))
+
+		# Step 10: Almost identical to step 9, except for itemprop-reverse
+		# The only difference is that a Literal value must be ignored
+		for prop in self.get_item_properties(item) :
+			for name in prop.getAttribute("itemprop-reverse").strip().split() :
+				# Steps 9.1.1 to 9.1.3 are done in a separate function
+				(predicate, value) = _get_predicate_object(prop, name, itype)
+				if value is None or isinstance(value, Literal) : 
+					continue
+				# 9.1.5, generate the triple
+				self.graph.add((value, URIRef(predicate), subject))
+				# 9.1.6, take care of the possible subProperty/equivalentProperty
+				if name in self.subs and self.subs[name] is not None :
+					for sup in self.subs[name] :
+						self.graph.add((value, sup, subject))
 
 		# Step 11: return the subject to the caller
 		return subject
