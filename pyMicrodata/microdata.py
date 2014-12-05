@@ -303,8 +303,8 @@ class MicrodataConversion(Microdata) :
 
 		if subject is None :
 			# nop, there is no subject set. If there is a valid @itemid, that carries it
-			if item.hasAttribute("itemid") and is_absolute_URI(item.getAttribute("itemid")):
-				subject = URIRef(item.getAttribute("itemid").strip())
+			if item.hasAttribute("itemid") :
+				subject = URIRef(generate_URI(self.base, item.getAttribute("itemid").strip()))
 			else :
 				if item in self.bnodes :
 					subject = self.bnodes[item]
