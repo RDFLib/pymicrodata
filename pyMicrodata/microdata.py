@@ -182,8 +182,8 @@ class Microdata :
 
 		# Add the possible "@itemref" targets to the nodes to work on
 		if item.hasAttribute("itemref") :
-			for id in item.getAttribute("itemref").strip().split() :
-				obj = self.getElementById(id)
+			for it in item.getAttribute("itemref").strip().split() :
+				obj = self.getElementById(it)
 				if obj is not None : pending.append(obj)
 		
 		while len(pending) > 0 :
@@ -211,16 +211,16 @@ class Microdata :
 		@return: array of nodes whose @id attribute matches C{id} (formally, there should be only one...)
 		"""
 		def collect_ids(node) :
-			ids = []
+			lids = []
 			for child in node.childNodes :
 				if child.nodeType == node.ELEMENT_NODE :
-					ids += collect_ids( child )
+					lids += collect_ids(child)
 					
 			if node.hasAttribute("id") and node.getAttribute("id") == id :
 				# This is also a top level item
-				ids.append(node)
+				lids.append(node)
 			
-			return ids
+			return lids
 		
 		ids = collect_ids(self.document)
 		if len(ids) > 0 :
@@ -382,8 +382,8 @@ class MicrodataConversion(Microdata) :
 				self.graph.add((subject, URIRef(predicate), value))
 				# 9.1.6, take care of the possible subProperty/equivalentProperty
 				if name in self.subs and self.subs[name] is not None :
-					for super in self.subs[name] :
-						self.graph.add((subject, super, value))
+					for sup in self.subs[name] :
+						self.graph.add((subject, sup, value))
 
 		# Step 11: return the subject to the caller
 		return subject
@@ -398,7 +398,7 @@ class MicrodataConversion(Microdata) :
 		@type context: L{EvaluationContext}
 		"""
 		def add_to_subs(subpr) :
-			if subpr != None :
+			if subpr is not None :
 				if isinstance(subpr,list) :
 					self.subs[name] = []
 					for p in subpr :

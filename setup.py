@@ -6,5 +6,6 @@ setup(name="pyMicrodata",
       author_email="ivan@w3.org",
 	  maintainer="Ivan Herman",
 	  maintainer_email="ivan@w3.org",
-      packages=['pyMicrodata'])
+      packages=['pyMicrodata'],
+	  requires = ['rdflib'])
 

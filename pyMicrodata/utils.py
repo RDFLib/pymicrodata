@@ -45,12 +45,12 @@ else :
 from datetime import datetime
 
 #################################################################################
-def is_absolute_URI( uri ) :
+def is_absolute_URI(uri) :
 	return urlparse(uri)[0] != ""
 
 #################################################################################
 
-def fragment_escape( name ) :
+def fragment_escape(name) :
 	return quote(name, '/~:-.')
 		
 #################################################################################
@@ -62,7 +62,7 @@ def generate_URI(base, v) :
 	@param base: Absolute URI for base
 	@param v: relative or absolute URI
 	"""
-	if is_absolute_URI( v ) :
+	if is_absolute_URI(v) :
 		return v
 	else :		
 		# UGLY!!! There is a bug for a corner case in python version <= 2.5.X
@@ -85,7 +85,7 @@ def generate_URI(base, v) :
 			return joined		
 
 #################################################################################
-def get_Literal(Pnode):
+def get_Literal(Pnode) :
 	"""
 	Get (recursively) the full text from a DOM Node.
 
@@ -114,7 +114,7 @@ def get_lang(node) :
 		retval = node.getAttribute("lang")
 	if retval and node.hasAttribute("xml:lang") :
 		xmllang = node.getAttribute("xml:lang").lower()
-		if not( xmllang is not None and xmllang == retval.lower() ) :
+		if not(xmllang is not None and xmllang == retval.lower()) :
 			# This is an error, in which case retval must be invalidated...
 			retval = None
 	return retval
@@ -164,7 +164,7 @@ _formats = {
 						 ],
 }
 
-_dur_times = [ "%HH%MM%SS", "%HH", "%MM", "%SS", "%HH%MM", "%HH%SS", "%MM%SS" ]
+_dur_times = ["%HH%MM%SS", "%HH", "%MM", "%SS", "%HH%MM", "%HH%SS", "%MM%SS"]
 
 def get_time_type(string) :
 	"""
@@ -213,7 +213,7 @@ def get_time_type(string) :
 					break
 				except ValueError :
 					pass
-			if td == True :
+			if td :
 				# Getting there...
 				for format in _dur_times :
 					try :
@@ -268,7 +268,7 @@ class URIOpener :
 	@ivar headers: the return headers as sent back by the server
 	@ivar location: the real location of the data (ie, after possible redirection and content negotiation)
 	"""
-	CONTENT_LOCATION	= 'Content-Location'
+	CONTENT_LOCATION = 'Content-Location'
 	def __init__(self, name) :
 		"""
 		@param name: URL to be opened
@@ -277,14 +277,13 @@ class URIOpener :
 		try :
 			# Note the removal of the fragment ID. This is necessary, per the HTTP spec
 			req = Request(url=name.split('#')[0])
-
 			req.add_header('Accept', 'text/html, application/xhtml+xml')
 				
-			self.data		= url_opener.open(req)
-			self.headers	= self.data.info()
+			self.data    = url_opener.open(req)
+			self.headers = self.data.info()
 
 			if URIOpener.CONTENT_LOCATION in self.headers :
-				self.location = urlparse.urljoin(self.data.geturl(),self.headers[URIOpener.CONTENT_LOCATION])
+				self.location = urlparse.urljoin(self.data.geturl(), self.headers[URIOpener.CONTENT_LOCATION])
 			else :
 				self.location = name
 				

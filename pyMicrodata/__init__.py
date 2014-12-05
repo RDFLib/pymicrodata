@@ -143,7 +143,7 @@ class pyMicrodata :
 		Later versions of pyMicrodata may have more detailed error conditions on which it wishes to react. At the moment, this
 		is fairly crude...
 		"""
-		if pgraph == None :
+		if pgraph is None :
 			retval = Graph()
 		else :
 			retval = pgraph
@@ -158,7 +158,7 @@ class pyMicrodata :
 		retval.add((bnode, ns_dc["description"], Literal(full_msg)))
 		retval.add((bnode, ns_dc["date"], Literal(datetime.datetime.utcnow().isoformat(),datatype=ns_xsd["dateTime"])))
 		
-		if uri != None :
+		if uri is not None :
 			htbnode = BNode()
 			retval.add((bnode, ns_micro["context"],htbnode))
 			retval.add((htbnode, ns_rdf["type"], ns_ht["Request"]))
@@ -326,18 +326,6 @@ def processURI(uri, outputFormat, form) :
 	@return: serialized graph
 	@rtype: string
 	"""
-	def _get_option(param, compare_value, default) :
-		param_old = param.replace('_', '-')
-		if param in list(form.keys()) :
-			val = form.getfirst(param).lower()
-			return val == compare_value
-		elif param_old in list(form.keys()) :
-			# this is to ensure the old style parameters are still valid...
-			# in the old days I used '-' in the parameters, the standard favours '_'
-			val = form.getfirst(param_old).lower()
-			return val == compare_value
-		else :
-			return default
 
 	if uri == "uploaded:" :
 		input = form["uploaded"].file
@@ -419,7 +407,7 @@ def processURI(uri, outputFormat, form) :
 		retval +="<pre>%s</pre>\n" % value
 		retval +="<h1>Distiller request details</h1>\n"
 		retval +="<dl>\n"
-		if uri == "text:" and "text" in form and form["text"].value != None and len(form["text"].value.strip()) != 0 :
+		if uri == "text:" and "text" in form and form["text"].value is not None and len(form["text"].value.strip()) != 0 :
 			retval +="<dt>Text input:</dt><dd>%s</dd>\n" % cgi.escape(form["text"].value).replace('\n','<br/>')
 		elif uri == "uploaded:" :
 			retval +="<dt>Uploaded file</dt>\n"
