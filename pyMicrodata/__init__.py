@@ -108,19 +108,15 @@ class HTTPError(MicrodataError) :
 # Default bindings. This is just for the beauty of things: bindings are added to the graph to make the output nicer. If this is not done, RDFlib defines prefixes like "_1:", "_2:" which is, though correct, ugly...
 
 _bindings = {
-	'owl'		: 'http://www.w3.org/2002/07/owl#',
 	'gr'		: 'http://purl.org/goodrelations/v1#',
 	'cc'		: 'http://creativecommons.org/ns#',
 	'sioc'		: 'http://rdfs.org/sioc/ns#',
 	'skos'		: 'http://www.w3.org/2004/02/skos/core#',
 	'rdfs'		: 'http://www.w3.org/2000/01/rdf-schema#',
 	'foaf'		: 'http://xmlns.com/foaf/0.1/',
-	'void'		: 'http://rdfs.org/ns/void#',
-	'ical'		: 'http://www.w3.org/2002/12/cal/icaltzd#',
 	'vcard'		: 'http://www.w3.org/2006/vcard/ns#',
-	'og'		: 'http://ogp.me/ns#',
 	'rdf'		: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-	'ma'		: 'http://www.w3.org/ns/ma-ont#',
+	'xsd'		: 'http://www.w3.org/2001/XMLSchema#'
 }
 
 #########################################################################################################
