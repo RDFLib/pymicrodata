@@ -19,10 +19,6 @@ $Date: 2012-12-01 22:46:57 $
 import sys
 (py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
 
-# To be added soon:
-      # "Class"              : {"subPropertyOf" : "http://www.w3.org/2000/01/rdf-schema#Class"},
-      # "Property"           : {"subPropertyOf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"}
-
 _registry = """
 {
   "http://schema.org/": {

@@ -340,6 +340,7 @@ def processURI(uri, outputFormat, form) :
 
 	# decide whether HTML or RDF should be sent. 
 	htmlOutput = False
+	#import os
 	#if 'HTTP_ACCEPT' in os.environ :
 	#	acc = os.environ['HTTP_ACCEPT']
 	#	possibilities = ['text/html',
