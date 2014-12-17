@@ -12,8 +12,8 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 """
 
 """
-$Id: registry.py,v 1.6 2012-12-01 22:46:57 ivan Exp $
-$Date: 2012-12-01 22:46:57 $
+$Id: registry.py,v 1.7 2014-12-17 08:52:43 ivan Exp $
+$Date: 2014-12-17 08:52:43 $
 """
 
 import sys

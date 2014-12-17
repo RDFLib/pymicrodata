@@ -13,8 +13,8 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 """
 
 """
-$Id: microdata.py,v 1.4 2012/09/05 16:40:43 ivan Exp $
-$Date: 2012/09/05 16:40:43 $
+$Id: microdata.py,v 1.6 2014-12-17 08:52:43 ivan Exp $
+$Date: 2014-12-17 08:52:43 $
 
 Added a reaction on the RDFaStopParsing exception: if raised while setting up the local execution context, parsing
 is stopped (on the whole subtree)

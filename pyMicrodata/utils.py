@@ -9,8 +9,8 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 """
 
 """
-$Id: utils.py,v 1.8 2014-02-21 16:26:59 ivan Exp $
-$Date: 2014-02-21 16:26:59 $
+$Id: utils.py,v 1.9 2014-12-17 08:52:43 ivan Exp $
+$Date: 2014-12-17 08:52:43 $
 """
 import sys, socket
 (py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
