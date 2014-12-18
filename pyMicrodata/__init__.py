@@ -2,7 +2,7 @@
 """
 
 This module implements the microdata->RDF algorithm, as documented by the U{W3C Semantic Web Interest Group
-Note<http://www.w3.org/TR/2012/NOTE-microdata-rdf-20120308/>}.
+Note<http://www.w3.org/TR/2012/NOTE-microdata-rdf-20141216/>}.
 
 The module can be used via a stand-alone script (an example is part of the distribution) or bound to a CGI script as a Web Service. An example CGI script is also added to the distribution. Both the local script and the distribution may have to be adapted to local circumstances.
 
@@ -192,8 +192,8 @@ class pyMicrodata :
 				self.base   = url_request.location
 				return url_request.data
 			else :
-				self.base = name
-				return file(name)
+				self.base = 'file://'+name
+				return open(name, 'rb')
 		else :
 			return name
 	
