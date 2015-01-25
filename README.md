@@ -1,3 +1,7 @@
+[![DOI](https://zenodo.org/badge/9385/RDFLib/pymicrodata.svg)](http://dx.doi.org/10.5281/zenodo.14541)
+
+
+
 pyMicrodata distiller/parser library. The distribution contains:
 
 - ./pyMicrodata: the Python library. You should copy the directory
