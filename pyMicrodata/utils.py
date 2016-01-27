@@ -272,7 +272,7 @@ def get_time_type(string):
 
 #########################################################################################################
 # Handling URIs
-class URIOpener:
+class URIOpener(object):
     """A wrapper around the urllib2 method to open a resource. Beyond accessing the data itself, the class
     sets the content location.
     The class also adds an accept header to the outgoing request, namely

@@ -126,7 +126,7 @@ _bindings = {
 
 
 #########################################################################################################
-class pyMicrodata:
+class pyMicrodata(object):
     """Main processing class for the distiller
     @ivar base: the base value for processing
     @ivar http_status: HTTP Status, to be returned when the package is used via a CGI entry. Initially set to 200, may be modified by exception handlers

@@ -55,7 +55,7 @@ from . import debug
 # ----------------------------------------------------------------------------
 
 
-class EvaluationContext:
+class EvaluationContext(object):
     """
     Evaluation context structure. See Section 6.1 of the U{W3C IG Note<http://www.w3.org/TR/microdata-rdf/>}for the details.
 
@@ -122,7 +122,7 @@ class EvaluationContext:
         return retval
 
 
-class Microdata:
+class Microdata(object):
     """
     This class encapsulates methods that are defined by the U{microdata spec<http://www.w3.org/TR/microdata/>},
     as opposed to the RDF conversion note.
