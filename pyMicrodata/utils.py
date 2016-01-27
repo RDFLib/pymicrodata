@@ -298,9 +298,9 @@ class URIOpener(object):
             self.headers = self.data.info()
 
             if URIOpener.CONTENT_LOCATION in self.headers:
-                self.location = urlparse.urljoin(self.data.geturl(),
-                                                 self.headers[
-                                                     URIOpener.CONTENT_LOCATION])
+                self.location = urljoin(
+                    self.data.geturl(),
+                    self.headers[URIOpener.CONTENT_LOCATION])
             else:
                 self.location = name
 
