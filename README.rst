@@ -35,15 +35,15 @@ pyMicrodata distiller/parser library. The distribution contains:
 
 The package primarily depends on:
 
- - `RDFLib <http://rdflib.net>`_ version 3.2.0 or higher is strongly
-   recommended.
- - `html5lib <http://code.google.com/p/html5lib/>`_ (in the additional
-   packages folder)
- - several details or simply a more complete serialization depends on
-   the pyrdfa3 package on github: https://github.com/RDFLib/pyrdfa3.
-   Although the basic RDF conversion works without this, some
-   serializations may not be available and the vocabulary expansion
-   mechanism would not work either. 
+- `RDFLib <http://rdflib.net>`_ version 3.2.0 or higher is strongly
+  recommended.
+- `html5lib <http://code.google.com/p/html5lib/>`_ (in the additional
+  packages folder)
+- several details or simply a more complete serialization depends on
+  the pyrdfa3 package on github: https://github.com/RDFLib/pyrdfa3.
+  Although the basic RDF conversion works without this, some
+  serializations may not be available and the vocabulary expansion
+  mechanism would not work either. 
     
 The package has been tested on Python version 2.4 and higher. Python 2.7
 is strongly recommended. The package has been adapted to Python 3,
@@ -63,11 +63,11 @@ Release notes (starting from version 1.0)
 - Version 2.0: adapted to the new version of the microdata->RDF note.
   Differences, and its effect on the code, are:
 
-    - The content of the registry is greatly reduced, see Appendix C
-    - Remove the vocab expansion flag (although probably wise to keep it
-      on the top, entry level, and just remove it from the real
-      processing, to avoid backward compatibility issues for deployed
-      code
+  - The content of the registry is greatly reduced, see Appendix C
+  - Remove the vocab expansion flag (although probably wise to keep it
+    on the top, entry level, and just remove it from the real
+    processing, to avoid backward compatibility issues for deployed
+    code
 
 
 
