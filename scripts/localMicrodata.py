@@ -4,17 +4,18 @@ Run the microdata extraction package locally
 """
 
 import sys
-sys.path.insert(0,"/Users/ivan/Library/Python")
+
+sys.path.insert(0, "/Users/ivan/Library/Python")
 
 # You may want to adapt this to your environment...
 import sys, getopt
 
 from pyMicrodata import pyMicrodata, __version__
-		
-###########################################	
+
+###########################################
 
 
-usageText="""Usage: %s -[xtjnpvb:] [filename[s]]
+usageText = """Usage: %s -[xtjnpvb:] [filename[s]]
 where:
   -x: output format RDF/XML
   -t: output format Turtle (default)
@@ -28,45 +29,43 @@ where:
 
 """
 
-def usage() :
-	print usageText % sys.argv[0]
+
+def usage():
+    print usageText % sys.argv[0]
+
 
 format = "turtle"
-base   = ""
+base = ""
 version_only = False
 
-try :
-	opts, value = getopt.getopt(sys.argv[1:],"vxtjnpb:")
-	for o,a in opts:
-		if o == "-t" :
-			format = "turtle"
-		elif o == "-j" :
-			format = "json-ld"
-		elif o == "-n" :
-			format = "nt"
-		elif o == "-p" or o == "-x":
-			format = "pretty-xml"
-		elif o == "-b" :
-			base = a
-		elif o == "-v" :
-			version_only = True
-		else :
-			usage()
-			sys.exit(1)
-except :
-	usage()
-	sys.exit(1)
+try:
+    opts, value = getopt.getopt(sys.argv[1:], "vxtjnpb:")
+    for o, a in opts:
+        if o == "-t":
+            format = "turtle"
+        elif o == "-j":
+            format = "json-ld"
+        elif o == "-n":
+            format = "nt"
+        elif o == "-p" or o == "-x":
+            format = "pretty-xml"
+        elif o == "-b":
+            base = a
+        elif o == "-v":
+            version_only = True
+        else:
+            usage()
+            sys.exit(1)
+except:
+    usage()
+    sys.exit(1)
 
-if version_only :
-	print "pyMicrodata version: %s" % __version__
-	sys.exit(0)
+if version_only:
+    print "pyMicrodata version: %s" % __version__
+    sys.exit(0)
 
 processor = pyMicrodata(base)
-if len(value) >= 1 :
-	print processor.rdf_from_sources(value, outputFormat = format)
-else :
-	print processor.rdf_from_source(sys.stdin, outputFormat = format)
-	
-	
-
-	
+if len(value) >= 1:
+    print processor.rdf_from_sources(value, outputFormat=format)
+else:
+    print processor.rdf_from_source(sys.stdin, outputFormat=format)

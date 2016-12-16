@@ -17,6 +17,7 @@ $Date: 2014-12-17 08:52:43 $
 """
 
 import sys
+
 (py_v_major, py_v_minor, py_v_micro, py_v_final, py_v_serial) = sys.version_info
 
 _registry = """
@@ -26,20 +27,22 @@ _registry = """
       "additionalType": {"subPropertyOf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"}
     }
   },
-  
+
   "http://microformats.org/profile/hcard": {}
 }
 """
 
 vocab_names = {
-	"http://schema.org/"                         : "schema",
-	"http://microformats.org/profile/hcard#"     : "hcard"
+    "http://schema.org/": "schema",
+    "http://microformats.org/profile/hcard#": "hcard"
 }
 
 registry = []
-if py_v_major >= 3 or (py_v_major == 2 and py_v_minor >= 6) :
-	import json
-	registry  = json.loads(_registry)
-else :
-	import simplejson
-	registry  = simplejson.loads(_registry)
+if py_v_major >= 3 or (py_v_major == 2 and py_v_minor >= 6):
+    import json
+
+    registry = json.loads(_registry)
+else:
+    import simplejson
+
+    registry = simplejson.loads(_registry)
