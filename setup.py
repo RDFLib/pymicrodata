@@ -1,4 +1,5 @@
-from distutils.core import setup
+from setuptools import setup
+
 setup(name="pyMicrodata",
       description="pyMicrodata Libray",
       version="2.0",
@@ -7,5 +8,11 @@ setup(name="pyMicrodata",
 	  maintainer="Ivan Herman",
 	  maintainer_email="ivan@w3.org",
       packages=['pyMicrodata'],
-	  requires = ['rdflib'])
-
+      requires = ['rdflib'],
+      entry_points={
+          'rdf.plugins.parser': [
+              'mdata = pyMicrodata.rdflibparsers:MicrodataParser',
+              'microdata = pyMicrodata.rdflibparsers:MicrodataParser',
+          ]
+      }
+)
