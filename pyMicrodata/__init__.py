@@ -50,6 +50,8 @@ __version__ = "2.0"
 __author__  = 'Ivan Herman'
 __contact__ = 'Ivan Herman, ivan@w3.org'
 
+name = "pyMicrodata"
+
 import sys
 PY3 = (sys.version_info[0] >= 3)
 
