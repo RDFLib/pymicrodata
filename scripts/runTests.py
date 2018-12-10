@@ -5,6 +5,7 @@ Run the microdata testing locally
 
 import sys
 sys.path.insert(0,"/Users/ivan/Library/Python")
+sys.path.insert(0,"/Users/ivan/Library/Python/RDFa")
 
 # You may want to adapt this to your environment...
 import sys, getopt
@@ -30,7 +31,3 @@ print "----"
 with open(test_html) as f :
 	for l in f:
 		print l,
-
-
-
-

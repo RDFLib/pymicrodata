@@ -5,13 +5,14 @@ Run the microdata extraction package locally
 
 import sys
 sys.path.insert(0,"/Users/ivan/Library/Python")
+sys.path.insert(0,"/Users/ivan/Library/Python/RDFa")
 
 # You may want to adapt this to your environment...
 import sys, getopt
 
 from pyMicrodata import pyMicrodata, __version__
-		
-###########################################	
+
+###########################################
 
 
 usageText="""Usage: %s -[xtjnpvb:] [filename[s]]
@@ -66,7 +67,3 @@ if len(value) >= 1 :
 	print processor.rdf_from_sources(value, outputFormat = format)
 else :
 	print processor.rdf_from_source(sys.stdin, outputFormat = format)
-	
-	
-
-	
