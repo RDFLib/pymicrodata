@@ -46,7 +46,7 @@ U{W3C® SOFTWARE NOTICE AND LICENSE<href="http://www.w3.org/Consortium/Legal/200
 $Id: __init__.py,v 1.17 2014-12-17 08:52:43 ivan Exp $ $Date: 2014-12-17 08:52:43 $
 """
 
-__version__ = "2.0"
+__version__ = "3.0"
 __author__  = 'Ivan Herman'
 __contact__ = 'Ivan Herman, ivan@w3.org'
 
@@ -300,7 +300,11 @@ class pyMicrodata :
 		# the value of rdfOutput determines the reaction on exceptions...
 		for name in names :
 			self.graph_from_source(name, graph, rdfOutput)
-		return graph.serialize(format=outputFormat)
+
+		if PY3 :
+			return str(graph.serialize(format=outputFormat), encoding='utf-8')
+		else :
+			return graph.serialize(format=outputFormat)
 
 	def rdf_from_source(self, name, outputFormat = "turtle", rdfOutput = False) :
 		"""
