@@ -25,11 +25,11 @@ pyMicrodata distiller/parser library. The distribution contains:
 - ./epydoc.css: the CSS file the documentation generation uses (it is then copied to the documentation area itself)
 
 The package primarily depends on:
- - RDFLib<http://rdflib.net>. Version 3.2.0 or higher is strongly recommended.
+ - RDFLib<http://rdflib.net>. Version 5.0.0 or higher is strongly recommended.
  - html5lib<http://code.google.com/p/html5lib/> (in the additional packages folder)
  - several details or simply a more complete serialization depends on the pyrdfa3 package on github: https://github.com/RDFLib/pyrdfa3. Although the basic RDF conversion works without this, some serializations may not be available and the vocabulary expansion mechanism would not work either. 
     
-The package has been tested on Python version 2.4 and higher. Python 2.7 is strongly recommended. The package has been adapted to Python 3, though not yet thoroughly tested, because html5lib does not have yet a Python 3 version.
+The package has been tested on Python versions 2.7 and 3.8. Lower versions of python 3 may not work, due to minor changes in the runtime libraries.
 
 For the details on the conversion of Microdata to RDF, see:
 
@@ -45,6 +45,8 @@ Release notes (starting from version 1.0)
     - The content of the registry is greatly reduced, see Appendix C
     - Remove the vocab expansion flag (although probably wise to keep it on the top, entry level, and just remove it
     from the real processing, to avoid backward compatibility issues for deployed code
+
+- Version 3.0: adapting it to Python3.8 (and hopefully higher). It also relies on 5.0.0 of RDFlib (at the time of writing this is still dev version)
 
 
 
