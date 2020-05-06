@@ -40,12 +40,14 @@ from .utils import (
 
 class EvaluationContext:
     """
-    Evaluation context structure. See Section 6.1 of the U{W3C IG Note<http://www.w3.org/TR/microdata-rdf/>}for the details.
+    Evaluation context structure. See Section 6.1 of the U{W3C IG Note<http://www.w3.org/TR/microdata-rdf/>}for the
+    details.
 
     @ivar current_type : an absolute URL for the current type, used when an item does not contain an item type
     @ivar memory: mapping from items to RDF subjects
     @type memory: dictionary
-    @ivar current_name: an absolute URL for the in-scope name, used for generating URIs for properties of items without an item type
+    @ivar current_name: an absolute URL for the in-scope name, used for generating URIs for properties of items without
+                        an item type
     @ivar current_vocabulary: an absolute URL for the current vocabulary, from the registry
     """
 

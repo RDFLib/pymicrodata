@@ -66,6 +66,6 @@ if version_only:
 
 processor = pyMicrodata(base)
 if len(value) >= 1:
-	print(processor.rdf_from_sources(value, outputFormat=format))
+	print(processor.rdf_from_sources(value, output_format=format))
 else:
-	print(processor.rdf_from_source(sys.stdin, outputFormat=format))
+	print(processor.rdf_from_source(sys.stdin, output_format=format))

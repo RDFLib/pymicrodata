@@ -91,7 +91,7 @@ class MicrodataParser(Parser):
         from pyMicrodata import pyMicrodata
 
         processor = pyMicrodata(base=baseURI)
-        processor.graph_from_source(orig_source, graph=graph, rdfOutput=False)
+        processor.graph_from_source(orig_source, graph=graph, rdf_output=False)
 
 
 class StructuredDataParser(Parser):

@@ -38,7 +38,7 @@ else :
 	sys.path.insert(0,'/home/ivan/lib/python')
 	cgitb.enable(display=0, logdir="/home/nobody/tracebacks/")
 
-from pyMicrodata import processURI
+from pyMicrodata import process_uri
 
 # Register the RDFa JSON-LD serializer; for some reasons installing via pip did not work
 from rdflib.plugin import register, Serializer
@@ -146,5 +146,5 @@ else:
 		format = form.getfirst("format")
 	else:
 		format = "turtle"
-	retval = processURI(uri, format, form)
+	retval = process_uri(uri, format, form)
 	print(retval)
