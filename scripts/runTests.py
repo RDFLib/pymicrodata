@@ -2,32 +2,26 @@
 """
 Run the microdata testing locally
 """
-
-import sys
-sys.path.insert(0,"/Users/ivan/Library/Python")
-sys.path.insert(0,"/Users/ivan/Library/Python/RDFa")
-
 # You may want to adapt this to your environment...
-import sys, getopt
+import sys
 
-from pyMicrodata import pyMicrodata, __version__
+sys.path.append("..")
+import glob
+from pyMicrodata import pyMicrodata
+from rdflib import Graph
 
 ###########################################
 
-test_path      = "/Users/ivan/W3C/github/microdata-rdf/tests/"
-test_file_base = test_path + ("%04d" % int(sys.argv[1]))
-#test_file_base = test_path + ("sdo_eg_md_%d" % int(sys.argv[1]))
-test_html = test_file_base + ".html"
-test_ttl  = test_file_base + ".ttl"
+# marshall all test HTML files
+test_path = "../tests/"
+test_html_files = glob.glob(test_path + "*.html")
 
+# create the testing object
 processor = pyMicrodata()
-print processor.rdf_from_source(test_html)
-print "----"
-with open(test_ttl) as f :
-	for l in f:
-		print l,
 
-print "----"
-with open(test_html) as f :
-	for l in f:
-		print l,
+# for each HTML file...
+for f in test_html_files:
+    print("trying {}".format(f))
+    g1 = Graph().parse(data=processor.rdf_from_source(f), format="turtle")
+    g2 = Graph().parse(f.replace("html", "ttl"), format="turtle")
+    assert g1.isomorphic(g2)

@@ -16,18 +16,19 @@ Copyright: W3C
 
 """
 
-from rdflib.parser import (
-    Parser, StringInputSource, URLInputSource, FileInputSource)
+from rdflib.parser import Parser, StringInputSource, URLInputSource, FileInputSource
 
 try:
     import html5lib
+
     assert html5lib
     html5lib = True
 except ImportError:
     import warnings
+
     warnings.warn(
-        'html5lib not found! RDFa and Microdata ' +
-        'parsers will not be available.')
+        "html5lib not found! RDFa and Microdata " + "parsers will not be available."
+    )
     html5lib = False
 
 
@@ -49,6 +50,7 @@ def _get_orig_source(source):
     baseURI = source.getPublicId()
     return (baseURI, orig_source)
 
+
 class MicrodataParser(Parser):
     """
     Wrapper around an HTML5 microdata, extracted and converted into RDF. For
@@ -56,6 +58,7 @@ class MicrodataParser(Parser):
     spec: http://www.w3.org/TR/microdata/; for the algorithm used to extract
     microdata into RDF, see http://www.w3.org/TR/microdata-rdf/.
     """
+
     def parse(self, source, graph):
         """
         @param source: one of the input sources that the RDFLib package defined
@@ -78,17 +81,17 @@ class MicrodataParser(Parser):
         """
         if html5lib is False:
             raise ImportError(
-                'html5lib is not installed, cannot use RDFa ' +
-                'and Microdata parsers.')
+                "html5lib is not installed, cannot use RDFa " + "and Microdata parsers."
+            )
 
         (baseURI, orig_source) = _get_orig_source(source)
         self._process(graph, baseURI, orig_source)
 
     def _process(self, graph, baseURI, orig_source):
         from pyMicrodata import pyMicrodata
+
         processor = pyMicrodata(base=baseURI)
-        processor.graph_from_source(
-            orig_source, graph=graph, rdfOutput=False)
+        processor.graph_from_source(orig_source, graph=graph, rdf_output=False)
 
 
 class StructuredDataParser(Parser):
@@ -97,13 +100,17 @@ class StructuredDataParser(Parser):
     and microdata from an HTML file.
     It is simply a wrapper around the specific parsers.
     """
-    def parse(self, source, graph,
-              pgraph=None,
-              rdfa_version="",
-              vocab_expansion=False,
-              vocab_cache=False,
-              media_type='text/html'
-              ):
+
+    def parse(
+        self,
+        source,
+        graph,
+        pgraph=None,
+        rdfa_version="",
+        vocab_expansion=False,
+        vocab_cache=False,
+        media_type="text/html",
+    ):
         """
         @param source: one of the input sources that the RDFLib package defined
         @type source: InputSource class instance
@@ -134,18 +141,27 @@ class StructuredDataParser(Parser):
         # Note that the media_type argument is ignored, and is here only to avoid an 'unexpected argument' error.
         # This parser works for text/html only anyway...
         (baseURI, orig_source) = _get_orig_source(source)
-        if rdfa_version == "" : rdfa_version = "1.1"
+        if rdfa_version == "":
+            rdfa_version = "1.1"
 
         try:
             from pyRdfa.rdflibparsers import RDFaParser, HTurtleParser
-            RDFaParser()._process(graph, pgraph, baseURI, orig_source,
-                              media_type='text/html',
-                              rdfa_version=rdfa_version,
-                              vocab_expansion=vocab_expansion,
-                              vocab_cache=vocab_cache)
 
-            HTurtleParser()._process(graph, baseURI, orig_source, media_type='text/html')
+            RDFaParser()._process(
+                graph,
+                pgraph,
+                baseURI,
+                orig_source,
+                media_type="text/html",
+                rdfa_version=rdfa_version,
+                vocab_expansion=vocab_expansion,
+                vocab_cache=vocab_cache,
+            )
+
+            HTurtleParser()._process(
+                graph, baseURI, orig_source, media_type="text/html"
+            )
         except ImportError:
-            warnings.warn('pyRDFa not installed, will only parse Microdata')
+            warnings.warn("pyRDFa not installed, will only parse Microdata")
 
         MicrodataParser()._process(graph, baseURI, orig_source)

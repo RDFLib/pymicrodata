@@ -8,6 +8,7 @@ pyMicrodata.processURI	pyMicrodata-module.html#processURI
 pyMicrodata.ns_xsd	pyMicrodata-module.html#ns_xsd
 pyMicrodata._bindings	pyMicrodata-module.html#_bindings
 pyMicrodata.__author__	pyMicrodata-module.html#__author__
+pyMicrodata.name	pyMicrodata-module.html#name
 pyMicrodata.debug	pyMicrodata-module.html#debug
 pyMicrodata.microdata	pyMicrodata.microdata-module.html
 pyMicrodata.microdata.fragment_escape	pyMicrodata.utils-module.html#fragment_escape
@@ -18,6 +19,10 @@ pyMicrodata.microdata.get_Literal	pyMicrodata.utils-module.html#get_Literal
 pyMicrodata.microdata.generate_URI	pyMicrodata.utils-module.html#generate_URI
 pyMicrodata.microdata.is_absolute_URI	pyMicrodata.utils-module.html#is_absolute_URI
 pyMicrodata.microdata.get_lang_from_hierarchy	pyMicrodata.utils-module.html#get_lang_from_hierarchy
+pyMicrodata.rdflibparsers	pyMicrodata.rdflibparsers-module.html
+pyMicrodata.rdflibparsers._get_orig_source	pyMicrodata.rdflibparsers-module.html#_get_orig_source
+pyMicrodata.rdflibparsers.__package__	pyMicrodata.rdflibparsers-module.html#__package__
+pyMicrodata.rdflibparsers.html5lib	pyMicrodata.rdflibparsers-module.html#html5lib
 pyMicrodata.registry	pyMicrodata.registry-module.html
 pyMicrodata.registry.py_v_major	pyMicrodata.registry-module.html#py_v_major
 pyMicrodata.registry.py_v_minor	pyMicrodata.registry-module.html#py_v_minor
@@ -97,6 +102,11 @@ pyMicrodata.pyMicrodata._get_input	pyMicrodata.pyMicrodata-class.html#_get_input
 pyMicrodata.pyMicrodata.rdf_from_sources	pyMicrodata.pyMicrodata-class.html#rdf_from_sources
 pyMicrodata.pyMicrodata._generate_error_graph	pyMicrodata.pyMicrodata-class.html#_generate_error_graph
 pyMicrodata.pyMicrodata.__init__	pyMicrodata.pyMicrodata-class.html#__init__
+pyMicrodata.rdflibparsers.MicrodataParser	pyMicrodata.rdflibparsers.MicrodataParser-class.html
+pyMicrodata.rdflibparsers.MicrodataParser._process	pyMicrodata.rdflibparsers.MicrodataParser-class.html#_process
+pyMicrodata.rdflibparsers.MicrodataParser.parse	pyMicrodata.rdflibparsers.MicrodataParser-class.html#parse
+pyMicrodata.rdflibparsers.StructuredDataParser	pyMicrodata.rdflibparsers.StructuredDataParser-class.html
+pyMicrodata.rdflibparsers.StructuredDataParser.parse	pyMicrodata.rdflibparsers.StructuredDataParser-class.html#parse
 pyMicrodata.utils.URIOpener	pyMicrodata.utils.URIOpener-class.html
 pyMicrodata.utils.URIOpener.headers	pyMicrodata.utils.URIOpener-class.html#headers
 pyMicrodata.utils.URIOpener.data	pyMicrodata.utils.URIOpener-class.html#data

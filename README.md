@@ -33,6 +33,7 @@ The distribution contains:
 - **./epydoc.css**: the CSS file the documentation generation uses (it is then copied to the documentation area itself)
 
 The package primarily depends on:
+
  - [RDFLib](https://github.com/RDFLib/rdflib). Version 3.2.0 or higher is strongly recommended.
  - [html5lib](http://code.google.com/p/html5lib/) (in the additional packages folder)
  - several details or simply a more complete serialization depends on the pyrdfa3 package on github: https://github.com/RDFLib/pyrdfa3. Although the basic RDF conversion works without this, some serializations may not be available and the vocabulary expansion mechanism would not work either. 
@@ -52,6 +53,8 @@ For the details on the conversion of Microdata to RDF, see:
     - The content of the registry is greatly reduced, see Appendix C
     - Remove the vocab expansion flag (although probably wise to keep it on the top, entry level, and just remove it
     from the real processing, to avoid backward compatibility issues for deployed code
+
+- Version 3.0: adapting it to Python3.8 (and hopefully higher). It also relies on 5.0.0 of RDFlib (at the time of writing this is still dev version)
 
 
 

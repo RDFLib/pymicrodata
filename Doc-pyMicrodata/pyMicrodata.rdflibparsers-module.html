@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>pyMicrodata.MicrodataError</title>
+  <title>pyMicrodata.rdflibparsers</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -38,7 +38,7 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="pyMicrodata-module.html">Package&nbsp;pyMicrodata</a> ::
-        Class&nbsp;MicrodataError
+        Module&nbsp;rdflibparsers
       </span>
     </td>
     <td>
@@ -48,46 +48,36 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="pyMicrodata.MicrodataError-class.html"
+            >]&nbsp;|&nbsp;<a href="pyMicrodata.rdflibparsers-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
-<!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class MicrodataError</h1><p class="nomargin-top"><span class="codelink"><a href="pyMicrodata-pysrc.html#MicrodataError">source&nbsp;code</a></span></p>
-<pre class="base-tree">
-              object --+        
-                       |        
-exceptions.BaseException --+    
-                           |    
-        exceptions.Exception --+
-                               |
-                              <strong class="uidshort">MicrodataError</strong>
-</pre>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module rdflibparsers</h1><p class="nomargin-top"><span class="codelink"><a href="pyMicrodata.rdflibparsers-pysrc.html">source&nbsp;code</a></span></p>
+<p>Extraction parsers for structured data embedded into HTML or XML 
+  files. The former may include RDFa or microdata. The syntax and the 
+  extraction procedures are based on:</p>
+  <p>* The RDFa specifications: http://www.w3.org/TR/#tr_RDFa * The 
+  microdata specification: http://www.w3.org/TR/microdata/ * The 
+  specification of the microdata to RDF conversion: 
+  http://www.w3.org/TR/microdata-rdf/</p>
+  <p>License: W3C Software License, 
+  http://www.w3.org/Consortium/Legal/copyright-software Author: Ivan Herman
+  Copyright: W3C</p>
 
-<dl><dt>Known Subclasses:</dt>
-<dd>
-      <ul class="subclass-list">
-<li><a href="pyMicrodata.HTTPError-class.html">HTTPError</a></li>  </ul>
-</dd></dl>
-
-<hr />
-<p>Superclass exceptions representing error conditions defined by the 
-  RDFa 1.1 specification. It does not add any new functionality to the 
-  Exception class.</p>
-
-<!-- ==================== INSTANCE METHODS ==================== -->
-<a name="section-InstanceMethods"></a>
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
   <td colspan="2" class="table-header">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr valign="top">
-        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="left"><span class="table-header">Classes</span></td>
         <td align="right" valign="top"
-         ><span class="options">[<a href="#section-InstanceMethods"
+         ><span class="options">[<a href="#section-Classes"
          class="privatelink" onclick="toggle_private();"
          >hide private</a>]</span></td>
       </tr>
@@ -98,13 +88,49 @@ exceptions.BaseException --+
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
+        <a href="pyMicrodata.rdflibparsers.MicrodataParser-class.html" class="summary-name">MicrodataParser</a><br />
+      Wrapper around an HTML5 microdata, extracted and converted into 
+        RDF.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pyMicrodata.rdflibparsers.StructuredDataParser-class.html" class="summary-name">StructuredDataParser</a><br />
+      Convenience parser to extract both RDFa (including embedded Turtle)
+        and microdata from an HTML file.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="pyMicrodata.MicrodataError-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">msg</span>)</span><br />
-      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td><span class="summary-sig"><a href="pyMicrodata.rdflibparsers-module.html#_get_orig_source" class="summary-sig-name" onclick="show_private();">_get_orig_source</a>(<span class="summary-sig-arg">source</span>)</span><br />
+      A bit of a hack; the RDFa/microdata parsers need more than what the 
+      upper layers of RDFLib provide...</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyMicrodata-pysrc.html#MicrodataError.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyMicrodata.rdflibparsers-pysrc.html#_get_orig_source">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -112,73 +138,57 @@ exceptions.BaseException --+
       
     </td>
   </tr>
-  <tr>
-    <td colspan="2" class="summary">
-    <p class="indent-wrapped-lines"><b>Inherited from <code>exceptions.Exception</code></b>:
-      <code>__new__</code>
-      </p>
-    <p class="indent-wrapped-lines"><b>Inherited from <code>exceptions.BaseException</code></b>:
-      <code>__delattr__</code>,
-      <code>__getattribute__</code>,
-      <code>__getitem__</code>,
-      <code>__getslice__</code>,
-      <code>__reduce__</code>,
-      <code>__repr__</code>,
-      <code>__setattr__</code>,
-      <code>__setstate__</code>,
-      <code>__str__</code>,
-      <code>__unicode__</code>
-      </p>
-    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
-      <code>__format__</code>,
-      <code>__hash__</code>,
-      <code>__reduce_ex__</code>,
-      <code>__sizeof__</code>,
-      <code>__subclasshook__</code>
-      </p>
-    </td>
-  </tr>
 </table>
-<!-- ==================== PROPERTIES ==================== -->
-<a name="section-Properties"></a>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
   <td colspan="2" class="table-header">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr valign="top">
-        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="left"><span class="table-header">Variables</span></td>
         <td align="right" valign="top"
-         ><span class="options">[<a href="#section-Properties"
+         ><span class="options">[<a href="#section-Variables"
          class="privatelink" onclick="toggle_private();"
          >hide private</a>]</span></td>
       </tr>
     </table>
   </td>
 </tr>
-  <tr>
-    <td colspan="2" class="summary">
-    <p class="indent-wrapped-lines"><b>Inherited from <code>exceptions.BaseException</code></b>:
-      <code>args</code>,
-      <code>message</code>
-      </p>
-    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
-      <code>__class__</code>
-      </p>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="html5lib"></a><span class="summary-name">html5lib</span> = <code title="True">True</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'pyMicrodata'"><code class="variable-quote">'</code><code class="variable-string">pyMicrodata</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 </table>
-<!-- ==================== METHOD DETAILS ==================== -->
-<a name="section-MethodDetails"></a>
+<p class="indent-wrapped-lines"><b>Imports:</b>
+  <span title="rdflib.parser.Parser">Parser</span>,
+  <span title="rdflib.parser.StringInputSource">StringInputSource</span>,
+  <span title="rdflib.parser.URLInputSource">URLInputSource</span>,
+  <span title="rdflib.parser.FileInputSource">FileInputSource</span>,
+  <span title="warnings">warnings</span>
+</p><br />
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
   <td colspan="2" class="table-header">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr valign="top">
-        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="left"><span class="table-header">Function Details</span></td>
         <td align="right" valign="top"
-         ><span class="options">[<a href="#section-MethodDetails"
+         ><span class="options">[<a href="#section-FunctionDetails"
          class="privatelink" onclick="toggle_private();"
          >hide private</a>]</span></td>
       </tr>
@@ -186,28 +196,24 @@ exceptions.BaseException --+
   </td>
 </tr>
 </table>
-<a name="__init__"></a>
-<div>
+<a name="_get_orig_source"></a>
+<div class="private">
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">msg</span>)</span>
-    <br /><em class="fname">(Constructor)</em>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_get_orig_source</span>(<span class="sig-arg">source</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyMicrodata-pysrc.html#MicrodataError.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyMicrodata.rdflibparsers-pysrc.html#_get_orig_source">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <p>A bit of a hack; the RDFa/microdata parsers need more than what the 
+  upper layers of RDFLib provide... This method returns the original source
+  references.</p>
   <dl class="fields">
-    <dt>Overrides:
-        object.__init__
-        <dd><em class="note">(inherited documentation)</em></dd>
-    </dt>
   </dl>
 </td></tr></table>
 </div>
