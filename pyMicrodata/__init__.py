@@ -32,7 +32,7 @@ By default, the output format for the graph is RDF/XML. At present, the followin
  - "json": U{JSON-LD<http://json-ld.org/spec/latest/json-ld-syntax/>}
 
 @summary: Microdata parser (distiller)
-@requires: Python version 2.5 or up
+@requires: Python version 3.5 or up
 @requires: U{RDFLib<http://rdflib.net>}
 @requires: U{html5lib<http://code.google.com/p/html5lib/>} for the HTML5 parsing; note possible dependecies on Python's version on the project's web site
 @organization: U{World Wide Web Consortium<http://www.w3.org>}
@@ -168,54 +168,46 @@ class pyMicrodata:
                 )
             )
 
-        return retval
-
-    def _get_input(self, name):
-        """
-        Trying to guess whether "name" is a URI, a string; it then tries to open these as such accordingly,
-        returning a file-like object. If name is a plain string then it returns the input argument (that should
-        be, supposedly, a file-like object already)
-
-        @param name: identifier of the input source
-        @type name: string or a file-like object
-        @return: a file like object if opening "name" is possible and successful, "name" otherwise
-        """
-        try:
-            # Python 2 branch
-            isstring = isinstance(name, str)
-        except:
-            # Python 3 branch
-            isstring = isinstance(name, str)
-
-        if isstring:
-            # check if this is a URI, ie, if there is a valid 'scheme' part
-            # otherwise it is considered to be a simple file
-            if urlparse(name)[0] != "":
-                url_request = URIOpener(name)
-                self.base = url_request.location
-                return url_request.data
-            else:
-                self.base = "file://" + name
-                return open(name, "rb")
-        else:
-            return name
-
-    ####################################################################################################################
-    # Externally used methods
-    #
-    def graph_from_DOM(self, dom, graph=None):
-        """
-        Extract the RDF Graph from a DOM tree.
-        @param dom: a DOM Node element, the top level entry node for the whole tree (to make it clear, a
-        dom.documentElement is used to initiate processing)
-        @keyword graph: an RDF Graph (if None, than a new one is created)
-        @type graph: rdflib Graph instance. If None, a new one is created.
-        @return: an RDF Graph
-        @rtype: rdflib Graph instance
-        """
-        if graph is None:
-            # Create the RDF Graph, that will contain the return triples...
-            graph = Graph()
+		return retval
+		
+	def _get_input(self, name) :
+		"""
+		Trying to guess whether "name" is a URI, a string; it then tries to open these as such accordingly,
+		returning a file-like object. If name is a plain string then it returns the input argument (that should
+		be, supposedly, a file-like object already)
+		@param name: identifier of the input source
+		@type name: string or a file-like object
+		@return: a file like object if opening "name" is possible and successful, "name" otherwise
+		"""
+		if isinstance(name, str) :
+			# check if this is a URI, ie, if there is a valid 'scheme' part
+			# otherwise it is considered to be a simple file
+			if urlparse(name)[0] != "" :
+				url_request = URIOpener(name)
+				self.base   = url_request.location
+				return url_request.data
+			else :
+				self.base = 'file://'+name
+				return open(name, 'rb')
+		else :
+			return name
+	
+	####################################################################################################################
+	# Externally used methods
+	#
+	def graph_from_DOM(self, dom, graph = None) :
+		"""
+		Extract the RDF Graph from a DOM tree.
+		@param dom: a DOM Node element, the top level entry node for the whole tree (to make it clear, a
+		dom.documentElement is used to initiate processing)
+		@keyword graph: an RDF Graph (if None, than a new one is created)
+		@type graph: rdflib Graph instance. If None, a new one is created.
+		@return: an RDF Graph
+		@rtype: rdflib Graph instance
+		"""
+		if graph is None :
+			# Create the RDF Graph, that will contain the return triples...
+			graph = Graph()
 
         conversion = MicrodataConversion(dom.documentElement, graph, base=self.base)
         conversion.convert()
@@ -286,162 +278,162 @@ class pyMicrodata:
                 raise e
             return self._generate_error_graph(graph, str(e), uri=name)
 
-    def rdf_from_sources(self, names, outputFormat="turtle", rdfOutput=False):
-        """
-        Extract and RDF graph from a list of RDFa sources and serialize them in one graph. The sources are parsed, the RDF
-        extracted, and serialization is done in the specified format.
-        @param names: list of sources, each can be a URI, a file name, or a file-like object
-        @keyword outputFormat: serialization format. Can be one of "turtle", "n3", "xml", "pretty-xml", "nt". "xml" and "pretty-xml", as well as "turtle" and "n3" are synonyms.
-        @return: a serialized RDF Graph
-        @rtype: string
-        """
-        graph = Graph()
+	def rdf_from_sources(self, names, outputFormat="turtle", rdfOutput=False):
+		"""
+		Extract and RDF graph from a list of RDFa sources and serialize them in one graph. The sources are parsed, the RDF
+		extracted, and serialization is done in the specified format.
+		@param names: list of sources, each can be a URI, a file name, or a file-like object
+		@keyword outputFormat: serialization format. Can be one of "turtle", "n3", "xml", "pretty-xml", "nt". "xml" and "pretty-xml", as well as "turtle" and "n3" are synonyms.
+		@return: a serialized RDF Graph
+		@rtype: string
+		"""
+		graph = Graph()
 
-        for prefix in _bindings:
-            graph.bind(prefix, Namespace(_bindings[prefix]))
+		for prefix in _bindings:
+			graph.bind(prefix, Namespace(_bindings[prefix]))
 
-        # the value of rdfOutput determines the reaction on exceptions...
-        for name in names:
-            self.graph_from_source(name, graph, rdfOutput)
-        return graph.serialize(format=outputFormat)
+		# the value of rdfOutput determines the reaction on exceptions...
+		for name in names:
+			self.graph_from_source(name, graph, rdfOutput)
+		return str(graph.serialize(format=outputFormat), encoding='utf-8')
 
-    def rdf_from_source(self, name, outputFormat="turtle", rdfOutput=False):
-        """
-        Extract and RDF graph from an RDFa source and serialize it in one graph. The source is parsed, the RDF
-        extracted, and serialization is done in the specified format.
-        @param name: a URI, a file name, or a file-like object
-        @keyword outputFormat: serialization format. Can be one of "turtle", "n3", "xml", "pretty-xml", "nt". "xml" and "pretty-xml", as well as "turtle" and "n3" are synonyms.
-        @return: a serialized RDF Graph
-        @rtype: string
-        """
-        return self.rdf_from_sources([name], outputFormat, rdfOutput)
+	def rdf_from_source(self, name, outputFormat="turtle", rdfOutput=False):
+		"""
+		Extract and RDF graph from an RDFa source and serialize it in one graph. The source is parsed, the RDF
+		extracted, and serialization is done in the specified format.
+		@param name: a URI, a file name, or a file-like object
+		@keyword outputFormat: serialization format. Can be one of "turtle", "n3", "xml", "pretty-xml", "nt". "xml" and "pretty-xml", as well as "turtle" and "n3" are synonyms.
+		@return: a serialized RDF Graph
+		@rtype: string
+		"""
+		return self.rdf_from_sources([name], outputFormat, rdfOutput)
 
 
 ################################################# CGI Entry point
 def processURI(uri, outputFormat, form):
-    """The standard processing of a microdata uri options in a form, ie, as an entry point from a CGI call.
+	"""The standard processing of a microdata uri options in a form, ie, as an entry point from a CGI call.
 
-    The call accepts extra form options (eg, HTTP GET options) as follows:
+	The call accepts extra form options (eg, HTTP GET options) as follows:
 
-    @param uri: URI to access. Note that the "text:" and "uploaded:" values are treated separately; the former is for textual intput (in which case a StringIO is used to get the data) and the latter is for uploaded file, where the form gives access to the file directly.
-    @param outputFormat: serialization formats, as understood by RDFLib. Note that though "turtle" is
-    a possible parameter value, some versions of the RDFLib turtle generation does funny (though legal) things with
-    namespaces, defining unusual and unwanted prefixes...
-    @param form: extra call options (from the CGI call) to set up the local options (if any)
-    @type form: cgi FieldStorage instance
-    @return: serialized graph
-    @rtype: string
-    """
+	@param uri: URI to access. Note that the "text:" and "uploaded:" values are treated separately; the former is for textual intput (in which case a StringIO is used to get the data) and the latter is for uploaded file, where the form gives access to the file directly.
+	@param outputFormat: serialization formats, as understood by RDFLib. Note that though "turtle" is
+	a possible parameter value, some versions of the RDFLib turtle generation does funny (though legal) things with
+	namespaces, defining unusual and unwanted prefixes...
+	@param form: extra call options (from the CGI call) to set up the local options (if any)
+	@type form: cgi FieldStorage instance
+	@return: serialized graph
+	@rtype: string
+	"""
 
-    if uri == "uploaded:":
-        input = form["uploaded"].file
-        base = ""
-    elif uri == "text:":
-        input = StringIO(form.getfirst("text"))
-        base = ""
-    else:
-        input = uri
-        base = uri
+	if uri == "uploaded:":
+		input = form["uploaded"].file
+		base = ""
+	elif uri == "text:":
+		input = StringIO(form.getfirst("text"))
+		base = ""
+	else:
+		input = uri
+		base = uri
 
-    processor = pyMicrodata(base=base)
+	processor = pyMicrodata(base=base)
 
-    # Decide the output format; the issue is what should happen in case of a top level error like an inaccessibility of
-    # the html source: should a graph be returned or an HTML page with an error message?
+	# Decide the output format; the issue is what should happen in case of a top level error like an inaccessibility of
+	# the html source: should a graph be returned or an HTML page with an error message?
 
-    # decide whether HTML or RDF should be sent.
-    htmlOutput = False
-    # import os
-    # if 'HTTP_ACCEPT' in os.environ :
-    # 	acc = os.environ['HTTP_ACCEPT']
-    # 	possibilities = ['text/html',
-    # 					 'application/rdf+xml',
-    # 					 'text/turtle; charset=utf-8',
-    # 					 'application/json',
-    # 					 'application/ld+json',
-    # 					 'text/rdf+n3']
-    #
-    # 	# this nice module does content negotiation and returns the preferred format
-    # 	sg = httpheader.acceptable_content_type(acc, possibilities)
-    # 	htmlOutput = (sg != None and sg[0] == httpheader.content_type('text/html'))
-    # 	os.environ['rdfaerror'] = 'true'
+	# decide whether HTML or RDF should be sent.
+	htmlOutput = False
+	# import os
+	# if 'HTTP_ACCEPT' in os.environ :
+	# 	acc = os.environ['HTTP_ACCEPT']
+	# 	possibilities = ['text/html',
+	# 					 'application/rdf+xml',
+	# 					 'text/turtle; charset=utf-8',
+	# 					 'application/json',
+	# 					 'application/ld+json',
+	# 					 'text/rdf+n3']
+	#
+	# 	# this nice module does content negotiation and returns the preferred format
+	# 	sg = httpheader.acceptable_content_type(acc, possibilities)
+	# 	htmlOutput = (sg != None and sg[0] == httpheader.content_type('text/html'))
+	# 	os.environ['rdfaerror'] = 'true'
 
-    try:
-        graph = processor.rdf_from_source(
-            input,
-            outputFormat,
-            rdfOutput=("forceRDFOutput" in list(form.keys())) or not htmlOutput,
-        )
-        if outputFormat == "n3":
-            retval = "Content-Type: text/rdf+n3; charset=utf-8\n"
-        elif outputFormat == "nt" or outputFormat == "turtle":
-            retval = "Content-Type: text/turtle; charset=utf-8\n"
-        elif outputFormat == "json-ld" or outputFormat == "json":
-            retval = "Content-Type: application/json; charset=utf-8\n"
-        else:
-            retval = "Content-Type: application/rdf+xml; charset=utf-8\n"
-        retval += "\n"
+	try:
+		graph = processor.rdf_from_source(
+			input,
+			outputFormat,
+			rdfOutput=("forceRDFOutput" in list(form.keys())) or not htmlOutput,
+		)
+		if outputFormat == "n3":
+			retval = "Content-Type: text/rdf+n3; charset=utf-8\n"
+		elif outputFormat == "nt" or outputFormat == "turtle":
+			retval = "Content-Type: text/turtle; charset=utf-8\n"
+		elif outputFormat == "json-ld" or outputFormat == "json":
+			retval = "Content-Type: application/json; charset=utf-8\n"
+		else:
+			retval = "Content-Type: application/rdf+xml; charset=utf-8\n"
+		retval += "\n"
 
-        retval += graph
-        return retval
-    except HTTPError:
-        import cgi
+		retval += graph
+		return retval
+	except HTTPError:
+		import cgi
 
-        h = sys.exc_info()[1]
-        retval = "Content-type: text/html; charset=utf-8\nStatus: %s \n\n" % h.http_code
-        retval += "<html>\n"
-        retval += "<head>\n"
-        retval += "<title>HTTP Error in Microdata processing</title>\n"
-        retval += "</head><body>\n"
-        retval += "<h1>HTTP Error in distilling Microdata</h1>\n"
-        retval += "<p>HTTP Error: %s (%s)</p>\n" % (h.http_code, h.msg)
-        retval += "<p>On URI: <code>'%s'</code></p>\n" % cgi.escape(uri)
-        retval += "</body>\n"
-        retval += "</html>\n"
-        return retval
-    except:
-        # This branch should occur only if an exception is really raised, ie, if it is not turned
-        # into a graph value.
-        (type, value, traceback) = sys.exc_info()
+		h = sys.exc_info()[1]
+		retval = "Content-type: text/html; charset=utf-8\nStatus: %s \n\n" % h.http_code
+		retval += "<html>\n"
+		retval += "<head>\n"
+		retval += "<title>HTTP Error in Microdata processing</title>\n"
+		retval += "</head><body>\n"
+		retval += "<h1>HTTP Error in distilling Microdata</h1>\n"
+		retval += "<p>HTTP Error: %s (%s)</p>\n" % (h.http_code, h.msg)
+		retval += "<p>On URI: <code>'%s'</code></p>\n" % cgi.escape(uri)
+		retval += "</body>\n"
+		retval += "</html>\n"
+		return retval
+	except:
+		# This branch should occur only if an exception is really raised, ie, if it is not turned
+		# into a graph value.
+		(type, value, traceback) = sys.exc_info()
 
-        import traceback, cgi
+		import traceback, cgi
 
-        retval = (
-            "Content-type: text/html; charset=utf-8\nStatus: %s\n\n"
-            % processor.http_status
-        )
-        retval += "<html>\n"
-        retval += "<head>\n"
-        retval += "<title>Exception in Microdata processing</title>\n"
-        retval += "</head><body>\n"
-        retval += "<h1>Exception in distilling Microdata</h1>\n"
-        retval += "<pre>\n"
-        strio = StringIO()
-        traceback.print_exc(file=strio)
-        retval += strio.getvalue()
-        retval += "</pre>\n"
-        retval += "<pre>%s</pre>\n" % value
-        retval += "<h1>Distiller request details</h1>\n"
-        retval += "<dl>\n"
-        if (
-            uri == "text:"
-            and "text" in form
-            and form["text"].value is not None
-            and len(form["text"].value.strip()) != 0
-        ):
-            retval += "<dt>Text input:</dt><dd>%s</dd>\n" % cgi.escape(
-                form["text"].value
-            ).replace("\n", "<br/>")
-        elif uri == "uploaded:":
-            retval += "<dt>Uploaded file</dt>\n"
-        else:
-            retval += "<dt>URI received:</dt><dd><code>'%s'</code></dd>\n" % cgi.escape(
-                uri
-            )
-        retval += "<dt>Output serialization format:</dt><dd> %s</dd>\n" % outputFormat
-        retval += "</dl>\n"
-        retval += "</body>\n"
-        retval += "</html>\n"
-        return retval
+		retval = (
+			"Content-type: text/html; charset=utf-8\nStatus: %s\n\n"
+			% processor.http_status
+		)
+		retval += "<html>\n"
+		retval += "<head>\n"
+		retval += "<title>Exception in Microdata processing</title>\n"
+		retval += "</head><body>\n"
+		retval += "<h1>Exception in distilling Microdata</h1>\n"
+		retval += "<pre>\n"
+		strio = StringIO()
+		traceback.print_exc(file=strio)
+		retval += strio.getvalue()
+		retval += "</pre>\n"
+		retval += "<pre>%s</pre>\n" % value
+		retval += "<h1>Distiller request details</h1>\n"
+		retval += "<dl>\n"
+		if (
+			uri == "text:"
+			and "text" in form
+			and form["text"].value is not None
+			and len(form["text"].value.strip()) != 0
+		):
+			retval += "<dt>Text input:</dt><dd>%s</dd>\n" % cgi.escape(
+				form["text"].value
+			).replace("\n", "<br/>")
+		elif uri == "uploaded:":
+			retval += "<dt>Uploaded file</dt>\n"
+		else:
+			retval += "<dt>URI received:</dt><dd><code>'%s'</code></dd>\n" % cgi.escape(
+				uri
+			)
+		retval += "<dt>Output serialization format:</dt><dd> %s</dd>\n" % outputFormat
+		retval += "</dl>\n"
+		retval += "</body>\n"
+		retval += "</html>\n"
+		return retval
 
 
 ###################################################################################################

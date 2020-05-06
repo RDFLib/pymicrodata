@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>pyMicrodata.MicrodataError</title>
+  <title>pyMicrodata.rdflibparsers.StructuredDataParser</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -38,7 +38,8 @@
     <td width="100%">
       <span class="breadcrumbs">
         <a href="pyMicrodata-module.html">Package&nbsp;pyMicrodata</a> ::
-        Class&nbsp;MicrodataError
+        <a href="pyMicrodata.rdflibparsers-module.html">Module&nbsp;rdflibparsers</a> ::
+        Class&nbsp;StructuredDataParser
       </span>
     </td>
     <td>
@@ -48,34 +49,26 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="pyMicrodata.MicrodataError-class.html"
+            >]&nbsp;|&nbsp;<a href="pyMicrodata.rdflibparsers.StructuredDataParser-class.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
-<h1 class="epydoc">Class MicrodataError</h1><p class="nomargin-top"><span class="codelink"><a href="pyMicrodata-pysrc.html#MicrodataError">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Class StructuredDataParser</h1><p class="nomargin-top"><span class="codelink"><a href="pyMicrodata.rdflibparsers-pysrc.html#StructuredDataParser">source&nbsp;code</a></span></p>
 <pre class="base-tree">
-              object --+        
-                       |        
-exceptions.BaseException --+    
-                           |    
-        exceptions.Exception --+
-                               |
-                              <strong class="uidshort">MicrodataError</strong>
+          object --+    
+                   |    
+rdflib.parser.Parser --+
+                       |
+                      <strong class="uidshort">StructuredDataParser</strong>
 </pre>
 
-<dl><dt>Known Subclasses:</dt>
-<dd>
-      <ul class="subclass-list">
-<li><a href="pyMicrodata.HTTPError-class.html">HTTPError</a></li>  </ul>
-</dd></dl>
-
 <hr />
-<p>Superclass exceptions representing error conditions defined by the 
-  RDFa 1.1 specification. It does not add any new functionality to the 
-  Exception class.</p>
+<p>Convenience parser to extract both RDFa (including embedded Turtle) 
+  and microdata from an HTML file. It is simply a wrapper around the 
+  specific parsers.</p>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -100,11 +93,20 @@ exceptions.BaseException --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="pyMicrodata.MicrodataError-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">msg</span>)</span><br />
-      x.__init__(...) initializes x; see help(type(x)) for signature</td>
+          <td><span class="summary-sig"><a href="pyMicrodata.rdflibparsers.StructuredDataParser-class.html#parse" class="summary-sig-name">parse</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">graph</span>,
+        <span class="summary-sig-arg">pgraph</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">rdfa_version</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">vocab_expansion</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">vocab_cache</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">media_type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">text/html</code><code class="variable-quote">'</code></span>)</span><br />
+      @param source: one of the input sources that the RDFLib package defined
+@type source: InputSource class instance
+@param graph: target graph for the triples; output graph, in RDFa
+spec.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="pyMicrodata-pysrc.html#MicrodataError.__init__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="pyMicrodata.rdflibparsers-pysrc.html#StructuredDataParser.parse">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -114,26 +116,21 @@ exceptions.BaseException --+
   </tr>
   <tr>
     <td colspan="2" class="summary">
-    <p class="indent-wrapped-lines"><b>Inherited from <code>exceptions.Exception</code></b>:
-      <code>__new__</code>
-      </p>
-    <p class="indent-wrapped-lines"><b>Inherited from <code>exceptions.BaseException</code></b>:
-      <code>__delattr__</code>,
-      <code>__getattribute__</code>,
-      <code>__getitem__</code>,
-      <code>__getslice__</code>,
-      <code>__reduce__</code>,
-      <code>__repr__</code>,
-      <code>__setattr__</code>,
-      <code>__setstate__</code>,
-      <code>__str__</code>,
-      <code>__unicode__</code>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>rdflib.parser.Parser</code></b>:
+      <code>__init__</code>
       </p>
     <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
       <code>__format__</code>,
+      <code>__getattribute__</code>,
       <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
       <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
       <code>__sizeof__</code>,
+      <code>__str__</code>,
       <code>__subclasshook__</code>
       </p>
     </td>
@@ -158,10 +155,6 @@ exceptions.BaseException --+
 </tr>
   <tr>
     <td colspan="2" class="summary">
-    <p class="indent-wrapped-lines"><b>Inherited from <code>exceptions.BaseException</code></b>:
-      <code>args</code>,
-      <code>message</code>
-      </p>
     <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
       <code>__class__</code>
       </p>
@@ -186,27 +179,59 @@ exceptions.BaseException --+
   </td>
 </tr>
 </table>
-<a name="__init__"></a>
+<a name="parse"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">msg</span>)</span>
-    <br /><em class="fname">(Constructor)</em>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">parse</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">graph</span>,
+        <span class="sig-arg">pgraph</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">rdfa_version</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">vocab_expansion</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">vocab_cache</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">media_type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">text/html</code><code class="variable-quote">'</code></span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="pyMicrodata-pysrc.html#MicrodataError.__init__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="pyMicrodata.rdflibparsers-pysrc.html#StructuredDataParser.parse">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>x.__init__(...) initializes x; see help(type(x)) for signature</p>
+  <pre class="literalblock">
+
+@param source: one of the input sources that the RDFLib package defined
+@type source: InputSource class instance
+@param graph: target graph for the triples; output graph, in RDFa
+spec. parlance
+@keyword rdfa_version: 1.0 or 1.1. If the value is &quot;&quot;, then, by
+default, 1.1 is used unless the source has explicit signals to use 1.0
+(e.g., using a @version attribute, using a DTD set up for 1.0, etc)
+@type rdfa_version: string
+@type graph: RDFLib Graph
+@keyword pgraph: target for error and warning triples; processor
+graph, in RDFa spec. parlance. If set to None, these triples are
+ignored
+@type pgraph: RDFLib Graph
+@keyword vocab_expansion: whether the RDFa @vocab attribute should
+also mean vocabulary expansion (see the RDFa 1.1 spec for further
+    details)
+@type vocab_expansion: Boolean
+@keyword vocab_cache: in case vocab expansion is used, whether the
+expansion data (i.e., vocabulary) should be cached locally. This
+requires the ability for the local application to write on the
+local file system
+@type vocab_chache: Boolean
+@keyword rdfOutput: whether Exceptions should be catched and added,
+as triples, to the processor graph, or whether they should be raised.
+@type rdfOutput: Boolean
+
+</pre>
   <dl class="fields">
     <dt>Overrides:
-        object.__init__
-        <dd><em class="note">(inherited documentation)</em></dd>
+        rdflib.parser.Parser.parse
     </dt>
   </dl>
 </td></tr></table>

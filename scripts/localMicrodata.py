@@ -34,7 +34,6 @@ where:
 def usage():
     print(usageText % sys.argv[0])
 
-
 format = "turtle"
 base = ""
 version_only = False
@@ -62,11 +61,11 @@ except:
     sys.exit(1)
 
 if version_only:
-    print("pyMicrodata version: %s" % __version__)
-    sys.exit(0)
+	print("pyMicrodata version: %s" % __version__)
+	sys.exit(0)
 
 processor = pyMicrodata(base)
 if len(value) >= 1:
-    print(processor.rdf_from_sources(value, outputFormat=format))
+	print(processor.rdf_from_sources(value, outputFormat=format))
 else:
-    print(processor.rdf_from_source(sys.stdin, outputFormat=format))
+	print(processor.rdf_from_source(sys.stdin, outputFormat=format))
