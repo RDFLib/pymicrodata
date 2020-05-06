@@ -24,7 +24,7 @@ import sys
 if sys.version_info[0] >= 3 :
 	from urllib.parse import urlsplit, urlunsplit
 else :	
-	from urlparse import urlsplit, urlunsplit
+	from urllib.parse import urlsplit, urlunsplit
 
 from types import *
 

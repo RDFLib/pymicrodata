@@ -58,7 +58,7 @@ PY3 = (sys.version_info[0] >= 3)
 if PY3 :
 	from io import StringIO
 else :
-	from StringIO import StringIO
+	from io import StringIO
 
 import datetime
 
@@ -78,7 +78,7 @@ else :
 if PY3 :
 	from urllib.parse import urlparse
 else :
-	from urlparse import urlparse
+	from urllib.parse import urlparse
 
 debug = False
 
@@ -181,7 +181,7 @@ class pyMicrodata :
 		"""
 		try :
 			# Python 2 branch
-			isstring = isinstance(name, basestring)
+			isstring = isinstance(name, str)
 		except :
 			# Python 3 branch
 			isstring = isinstance(name, str)

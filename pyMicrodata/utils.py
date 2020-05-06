@@ -34,13 +34,13 @@ else :
 		import checkremote
 		url_opener = checkremote.safe_url_opener
 	else :
-		import urllib2
-		url_opener = urllib2.build_opener()
-	from urllib2        import Request
-	from urllib2        import HTTPError as urllib_HTTPError
-	from urlparse       import urljoin, urlparse
-	from urllib         import quote
-	from BaseHTTPServer import BaseHTTPRequestHandler
+		import urllib.request, urllib.error, urllib.parse
+		url_opener = urllib.request.build_opener()
+	from urllib.request        import Request
+	from urllib.error        import HTTPError as urllib_HTTPError
+	from urllib.parse       import urljoin, urlparse
+	from urllib.parse         import quote
+	from http.server import BaseHTTPRequestHandler
 
 from datetime import datetime
 
