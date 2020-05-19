@@ -42,7 +42,7 @@ The package has been tested on Python 3.5+, in line with RDFlib.
 
 For the details on the conversion of Microdata to RDF, see:
 
-<http://www.w3.org/TR/2014/NOTE-microdata-rdf-201412XX/>
+<https://www.w3.org/TR/microdata-rdf/>
 
 
 ### Release notes (starting from version 1.0)
