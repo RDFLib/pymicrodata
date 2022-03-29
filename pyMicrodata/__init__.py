@@ -195,6 +195,16 @@ class pyMicrodata:
         else:
             return name_
 
+	@staticmethod
+	def _validate_output_format(outputFormat):
+		"""
+		Malicious actors may create XSS style issues by using an illegal output format... better be careful
+		"""
+		# protection against possible malicious URL call
+		if outputFormat not in ["turtle", "n3", "xml", "pretty-xml", "nt", "json-ld"] :
+			outputFormat = "turtle"
+		return outputFormat
+
     ####################################################################################################################
     # Externally used methods
     #
@@ -374,11 +384,7 @@ def process_uri(uri, output_format, form):
     # 	os.environ['rdfaerror'] = 'true'
 
     try:
-        graph = processor.rdf_from_source(
-            input,
-            output_format,
-            rdf_output=("forceRDFOutput" in list(form.keys())) or not htmlOutput,
-        )
+        outputFormat = pyMicrodata._validate_output_format(outputFormat);
         if output_format == "n3":
             retval = "Content-Type: text/rdf+n3; charset=utf-8\n"
         elif output_format == "nt" or output_format == "turtle":
@@ -387,8 +393,12 @@ def process_uri(uri, output_format, form):
             retval = "Content-Type: application/ld+json; charset=utf-8\n"
         else:
             retval = "Content-Type: application/rdf+xml; charset=utf-8\n"
+        graph = processor.rdf_from_source(
+            input,
+            output_format,
+            rdf_output=("forceRDFOutput" in list(form.keys())) or not htmlOutput,
+        )
         retval += "\n"
-
         retval += graph
         return retval
     except HTTPError:
