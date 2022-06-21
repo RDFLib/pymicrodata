@@ -2,7 +2,7 @@
 
 A [Microdata](https://www.w3.org/TR/microdata/) distiller/parser library
 
-> **Note:** since I retired a few months ago I do not really maintain this package any more. I would be more than happy if an interested party was interested to take over...  
+> **Note:** since I retired a few months ago I do not really maintain this package any more. I would be more than happy if an interested party was interested to take over.  In the meantime, I have "archived" the repository to clearly signal that there is no maintenance. I would be happy to unarchive it and transfer ownership if someone is interested.  
 > [@iherman](https://github.com/iherman)
 
 [![DOI](https://zenodo.org/badge/9385/RDFLib/pymicrodata.svg)](http://dx.doi.org/10.5281/zenodo.14541)
