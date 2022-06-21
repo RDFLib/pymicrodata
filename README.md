@@ -2,6 +2,9 @@
 
 A [Microdata](https://www.w3.org/TR/microdata/) distiller/parser library
 
+> **Note:** since I retired a few months ago I do not really maintain this package any more. I would be more than happy if an interested party was interested to take over...  
+> [@iherman](https://github.com/iherman)
+
 [![DOI](https://zenodo.org/badge/9385/RDFLib/pymicrodata.svg)](http://dx.doi.org/10.5281/zenodo.14541)
 
 [Microdata](https://www.w3.org/TR/microdata/) is a specification that defines new HTML attributes to embed simple 
